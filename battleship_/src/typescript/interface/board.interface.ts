@@ -1,6 +1,5 @@
-import {Ship} from "./ship.interface"
 export interface Board {
     name: string;
+    ships: number;
     size: number;
-    ships: Ship[]
 }
