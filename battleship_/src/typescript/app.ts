@@ -20,17 +20,16 @@ const initGame = async () => {
     await fillBoard_Bot(board_player_2)
     // start logic and play in order to give a move to player 1 and therefore player 2 will be automaticl0y realeased
     while (isPlay) {
-        let cordinateXToShoot = String(await prompt("[A , B , C ...] Type coordinate X to shoot: "))
-        let cordinateYToShoot = Number(await prompt("[0 , 1 ,2 ...] Type coordinate Y to shoot: "))
         // turns
         //player 1 shoot player 2
         console.log("- - - -        ENEMY BOARD (P.2)      - - - -")
         board_player_2.printBoard("game")
+        let cordinateXToShoot = String(await prompt("[A , B , C ...] Type coordinate X to shoot: "))
+        let cordinateYToShoot = Number(await prompt("[0 , 1 ,2 ...] Type coordinate Y to shoot: "))
         board_player_2
             .shoot
             (stringToNumber(cordinateXToShoot), cordinateYToShoot)
         board_player_2.printBoard("game")
-        console.log("- - - - - - - - - - - - - - - - - - -")
         isPlay = checkWin(board_player_2)
         if (!isPlay) break;
         //player 2 shoot player 1
@@ -39,8 +38,11 @@ const initGame = async () => {
         board_player_1
             .shoot
             ((generateRandom(board_player_1.size)), Number(generateRandom(board_player_1.size)))
+        console.log("===".repeat(SIZE + 1))
+        console.log(" ".repeat(SIZE), "YOUR BOARD")
         board_player_1.printBoard("game")
-        console.log("- - - - - - - - - - - - - - - - - - -")
+        console.log("\n\n\n\n")
+        console.log("===".repeat(SIZE + 1))
         isPlay = checkWin(board_player_1)
         if (!isPlay) break;
     }
@@ -94,7 +96,7 @@ const checkWin = (board: Board): boolean => {
         keepPlaying = false
     }
     if (!keepPlaying) {
-        console.log(`${board.name} LOSSES !` )
+        console.log(`${board.name} LOSSES !`)
     }
     return keepPlaying
 }
