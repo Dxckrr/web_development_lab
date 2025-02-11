@@ -1,11 +1,10 @@
-import Server from "./express/server";
-import MovieController from "./movies/controller/movie.controller";
-import MovieModel from "./movies/model/movie.model";
-import MovieView from "./movies/view/movie.view";
+import Server from './express/server'
+import MovieFactory from './movies/factory/movie.factory'
+import UserFactory from './users/factory/user.factory'
 
-console.log("Hello from movies.ts")
-const movieModel = new MovieModel()
-const movieView = new MovieView(new MovieController(movieModel));
+const movieView = MovieFactory.createMovieView()
 
-const server = new Server(movieView);
+const userView = UserFactory.createUserView()
+
+const server = new Server(movieView, userView)
 server.start()
