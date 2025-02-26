@@ -1,6 +1,6 @@
 import { Router } from "express";
-import RouterExpressInterface from "../../domain/RouterExpressInterface";
-import ErrorExpressControllerInterface from "../../domain/ErrorExpressControllerInterace";
+import RouterExpressInterface from "../../../domain/RouterExpressInterface";
+import ErrorExpressControllerInterface from "../../../domain/ErrorExpressControllerInterace";
 
 export default class ErrorExpressRouter implements RouterExpressInterface {
     path: string;

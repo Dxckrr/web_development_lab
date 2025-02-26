@@ -1,5 +1,5 @@
-import Movie from "../../director/Director"
+import Movie from '../../movie/Movie'
 
 export default interface MovieUseCasePort {
-    getMovies(): Movie[]
+  getMovies(): Movie[]
 }

@@ -1,4 +1,5 @@
 import ServerFactory from "./express/infrastructure/factory/ServerFactory";
-
-const server = ServerFactory.createServer([])
+import MovieRouterFactory from "./movies/infrastructure/factory/MovieRouterFactory";
+const movieFactoryRouter= MovieRouterFactory.create()
+const server = ServerFactory.createServer([movieFactoryRouter])
 server.start()

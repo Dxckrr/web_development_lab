@@ -1,12 +1,22 @@
-export default abstract class AbstractDirector {
+import Person, { PersonInterface } from '../person/Person'
 
-    protected yearsOfExperience: number
+export default abstract class AbstractDirector extends Person {
+  protected yearsOfExperience: number
 
-    constructor(directorInterface: DirectorInterface) {
-        this.yearsOfExperience = directorInterface.yearsOfExperience
-    }
+  constructor(directorInterface: DirectorInterface) {
+    super(directorInterface)
+    this.yearsOfExperience = directorInterface.yearsOfExperience
+  }
+
+  public getYearsOfExperience = (): number => this.yearsOfExperience
+
+  public setYearsOfExperience = (yearsOfExperience: number): void => {
+    this.yearsOfExperience = yearsOfExperience
+  }
 }
-export interface DirectorInterface {
-    yearsOfExperience: number
 
+interface DirectorInterface extends PersonInterface {
+  yearsOfExperience: number
 }
+
+export { DirectorInterface }

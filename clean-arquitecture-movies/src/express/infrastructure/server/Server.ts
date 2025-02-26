@@ -2,7 +2,7 @@ import express, { Application } from "express";
 import cors from "cors"
 import ExpressProvider from "../provider/ExpressProvider";
 import RouterExpressInterface from "../../domain/RouterExpressInterface";
-import ErrorExpressRouter from "../router/ErrorExpressRouter";
+import ErrorExpressRouter from "../error/router/ErrorExpressRouter";
 
 export default class Server {
     private readonly app: Application  //readonly -> inicializa solo una vez
@@ -16,12 +16,12 @@ export default class Server {
         this.middlewares()
     }
     public routes(): void {
-        if (this.routesExpress.length === 0) {
-            this.app.use(this.errorRoutes.path ,this.errorRoutes.router);
-        }
-        this.routesExpress.forEach(route => {
-            this.app.use(route.path, route.router);
-        });
+        this.routesExpress.forEach((route) => {
+            console.log(route.path)
+            this.app.use(route.path, route.router)
+          })
+      
+          this.app.use(this.errorRoutes.path, this.errorRoutes.router)      
     }
     public configure() {
         this.app.use(express.json())
@@ -37,6 +37,6 @@ export default class Server {
         const HOST = ExpressProvider.getHost();
         const PORT = ExpressProvider.getPort();
         const PROTOCOL = ExpressProvider.getProtocol();
-        this.app.listen(PORT, () => console.log(`Server running on ${PROTOCOL} ://${HOST}:${PORT}`));
+        this.app.listen(PORT, () => console.log(`Server running on ${PROTOCOL}://${HOST}:${PORT}`));
     }
 }
