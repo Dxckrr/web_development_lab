@@ -4,7 +4,8 @@ export default class NullUser extends AbstractUser {
     constructor() {
         super({
             id: 0,
-            name: 'Null User',
+            names: 'Null User',
+            surnames: 'Null User',
             email: 'Not found',
             password: 'Not found',
             role: 'USER',

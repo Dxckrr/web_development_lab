@@ -1,13 +1,15 @@
 export default abstract class AbstractUser {
     protected id: number;
-    protected name: string;
+    protected names: string;
+    protected surnames: string;
     protected email: string;
     protected password: string;
     protected role: Role;
 
     constructor(userInterface: UserInterface) {
         this.id = userInterface.id;
-        this.name = userInterface.name;
+        this.names = userInterface.names;
+        this.surnames = userInterface.surnames;
         this.email = userInterface.email;
         this.password = userInterface.password;
         this.role = userInterface.role;
@@ -16,21 +18,22 @@ export default abstract class AbstractUser {
 
     public abstract isNull(): boolean;
     public getId(): number { return this.id }
-    public getName(): string { return this.name; }
+    public getName(): string { return this.names; }
+    public getSurname(): string { return this.surnames; }
     public getEmail(): string { return this.email; }
     public getPassword(): string { return this.password; }
     public getRole(): Role { return this.role; }
-
 }
 
 type Role = 'ADMIN' | 'USER';
 interface UserInterface {
     id: number,
-    name: string,
+    names: string,
+    surnames: string,
     email: string,
     password: string,
     role: Role
-    
+
 }
 
 export { UserInterface, Role }
