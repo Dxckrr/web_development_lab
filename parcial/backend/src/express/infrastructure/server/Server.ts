@@ -34,9 +34,9 @@ export default class Server {
         }));
     }
     public start(): void {
-        const HOST = ExpressProvider.getHost();
-        const PORT = ExpressProvider.getPort();
-        const PROTOCOL = ExpressProvider.getProtocol();
+        const HOST = ExpressProvider.getInstance().getHost();
+        const PORT = ExpressProvider.getInstance().getPort();
+        const PROTOCOL = ExpressProvider.getInstance().getProtocol();
         this.app.listen(PORT, () => console.log(`Server running on ${PROTOCOL}://${HOST}:${PORT}`));
     }
 }

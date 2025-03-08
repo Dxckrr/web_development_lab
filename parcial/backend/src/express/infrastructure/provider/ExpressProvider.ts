@@ -1,38 +1,40 @@
-import * as dotenv from 'dotenv';
-import path from 'path';
-dotenv.config({ path: path.join(__dirname, '../../../../env/.env') });
-export default class ExpressProvider {
-    private static instance: ExpressProvider
-    private static PORT: string
-    private static HOST: string
-    private static PROTOCOL: string
+import * as dotenv from "dotenv";
+import path from "path";
+dotenv.config({ path: path.join(__dirname, "../../../../env/.env") });
 
+export default class ExpressProvider {
+    private static instance: ExpressProvider;
+
+    private readonly PORT: string;
+    private readonly HOST: string;
+    private readonly PROTOCOL: string;
 
     private constructor() {
-        ExpressProvider.PORT = process.env['PORT'] ?? '3000'
-        ExpressProvider.HOST = process.env['HOST'] ?? 'localhost'
-        ExpressProvider.PROTOCOL = process.env['PROTOCOL'] ?? 'http'
+        this.PORT = process.env['PORT'] ?? '3000'
+        this.HOST = process.env['HOST'] ?? 'localhost'
+        this.PROTOCOL = process.env['PROTOCOL'] ?? 'http'
     }
+
     public static getInstance(): ExpressProvider {
-        if (this.instance === null || this.instance === undefined) {
-            ExpressProvider.instance = new ExpressProvider()
+        if (!ExpressProvider.instance) {
+            ExpressProvider.instance = new ExpressProvider();
         }
-        return ExpressProvider.instance
+        return ExpressProvider.instance;
     }
-    public static getHost(): string {
-        ExpressProvider.getInstance()
-        return ExpressProvider.HOST
+
+    public getHost(): string {
+        return this.HOST;
     }
-    public static getPort(): string {
-        ExpressProvider.getInstance()
-        return ExpressProvider.PORT
+
+    public getPort(): string {
+        return this.PORT;
     }
-    public static getProtocol(): string {
-        ExpressProvider.getInstance()
-        return ExpressProvider.PROTOCOL
+
+    public getProtocol(): string {
+        return this.PROTOCOL;
     }
-    public static getAPIDomain(): string {
-        ExpressProvider.getInstance()
-        return `${ExpressProvider.PROTOCOL}://${ExpressProvider.HOST}:${ExpressProvider.PORT}`
+
+    public getAPIDomain(): string {
+        return `${this.PROTOCOL}://${this.HOST}:${this.PORT}`;
     }
 }

@@ -1,33 +1,10 @@
-import AbstractImage from "../image/AbstractImage";
+import AbstractProduct, { ProductInterface } from "./AbstractProduct"
 
-export default abstract class AbstractProduct {
-    protected id: number
-    protected name: string
-    protected price: number
-    protected description: string
-    protected category: string
-    protected stock: number
-    protected image: AbstractImage
+export default class Product extends AbstractProduct {
+    constructor(productInterface: ProductInterface) {
+        super(productInterface)
 
-    constructor(product: ProductInterface) {
-        this.id = product.id;
-        this.name = product.name;
-        this.price = product.price;
-        this.description = product.description;
-        this.category = product.category;
-        this.stock = product.stock;
-        this.image = product.image;
     }
+    public isNull = (): boolean => false
 
 }
-
-interface ProductInterface {
-    id: number,
-    name: string,
-    price: number,
-    description: string,
-    category: string,
-    stock: number,
-    image: AbstractImage
-}
-export { ProductInterface }
