@@ -2,6 +2,6 @@
     "watch": ["src"],
     "ext": ".ts , .js",
     "ignore": [],
-    "exec": "ts-node ./src/movies.ts"
+    "exec": "ts-node ./src/app.ts"
   }
   
