@@ -11,18 +11,18 @@ export default class UserService implements UserServicePort {
         private readonly userRepository: UserRepositoryPort
     ) { }
 
-    public create = async (user: RegisterUserInterface): Promise<User | null> => {
+    public createUser = async (user: RegisterUserInterface): Promise<User | null> => {
         const newUser = await this.userRepository.create(user)
         if (newUser === undefined || newUser === null) {
             return Promise.resolve(new NullUser())
         }
         return GetterUser.get(newUser)
     }
-    public getAll = async (): Promise<User[]> => {
+    public getAllUsers = async (): Promise<User[]> => {
         const users = await this.userRepository.findAll()
         return users.map((user) => GetterUser.get(user))
     }
-    public getById = async (id: string): Promise<User> => {
+    public getUserById = async (id: string): Promise<User> => {
         if (id === undefined || id === null) {
             return Promise.resolve(new NullUser())
         }
@@ -32,7 +32,7 @@ export default class UserService implements UserServicePort {
         }
         return GetterUser.get(user)
     }
-    public update = async (id: string, item: Partial<UserInterface>): Promise<User | boolean> => {
+    public updateUser = async (id: string, item: Partial<UserInterface>): Promise<User | boolean> => {
         if ((id === undefined || id === null) || Object.keys(item).length === 0) {
             return false;
         }
@@ -41,9 +41,9 @@ export default class UserService implements UserServicePort {
             return false;
         }
 
-        return this.getById(id);
+        return this.getUserById(id);
     }
-    public delete = async (id: string): Promise<boolean> => {
+    public deleteUser = async (id: string): Promise<boolean> => {
         if (id === undefined || id === null) {
             return false;
         }

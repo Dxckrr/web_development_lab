@@ -1,3 +1,4 @@
+import AbstractCategory from "../category/AbstractCategory";
 import AbstractImage from "../image/AbstractImage";
 
 export default abstract class AbstractProduct {
@@ -5,7 +6,7 @@ export default abstract class AbstractProduct {
     protected name: string
     protected price: number
     protected description: string
-    protected category: string
+    protected category: AbstractCategory
     protected stock: number
     protected image: AbstractImage
 
@@ -20,16 +21,20 @@ export default abstract class AbstractProduct {
     }
 
     public abstract isNull(): boolean;
-    
     public getId(): number { return this.id }
+    public getName(): string { return this.name };
+    public getDescription(): string { return this.description };
+    public getPrice(): number { return this.price };
+    public getStock(): number { return this.stock };
+    public getImage(): AbstractImage { return this.image };
+    public getCategory(): AbstractCategory { return this.category };
 }
-
 interface ProductInterface {
     id: number,
     name: string,
     price: number,
     description: string,
-    category: string,
+    category: AbstractCategory,
     stock: number,
     image: AbstractImage
 }

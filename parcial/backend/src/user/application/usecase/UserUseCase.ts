@@ -6,20 +6,21 @@ import User from "../../domain/user/User";
 
 export default class UserUseCase implements UserPort {
     constructor(private readonly userService: UserServicePort) { }
-    async create(user: RegisterUserInterface): Promise<User | null> {
-        return await this.userService.create(user)
+    async createUser(user: RegisterUserInterface): Promise<User | null> {
+        return await this.userService.createUser(user)
     }
-    async getAll(): Promise<User[]> {
-        return await this.userService.getAll()
+    async getAllUsers(): Promise<User[]> {
+        return await this.userService.getAllUsers()
     }
-    async getById(id: string): Promise<User> {
-        return await this.userService.getById(id)
+    async getUserById(id: string): Promise<User> {
+        return await this.userService.getUserById(id)
     }
-    async update(id: string, item: Partial<UserInterface>): Promise<User | boolean> {
-        return await this.userService.update(id, item)
+    async updateUser(id: string, item: Partial<UserInterface>): Promise<User | boolean> {
+
+        return await this.userService.updateUser(id, item)
     }
-    async delete(id: string): Promise<boolean> {
-        return await this.userService.delete(id)
+    async deleteUser(id: string): Promise<boolean> {
+        return await this.userService.deleteUser(id)
 
     }
 }
