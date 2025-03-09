@@ -9,6 +9,7 @@ export default class NullUser extends AbstractUser {
             email: 'Not found',
             password: 'Not found',
             role: 'USER',
+            creation_date: new Date(),
             // isActive: false,
             // lastLogin: new Date(0),
             // registrationDate: new Date(0),

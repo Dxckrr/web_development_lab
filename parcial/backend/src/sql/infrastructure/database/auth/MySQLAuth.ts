@@ -1,9 +1,9 @@
-import AuthRepositoryPort from "../../../../user/domain/port/driven/auth/AuthRepositoryPort";
 import RegisterUser from "../../../../user/domain/user/auth/RegisterUser";
 import NullUser from "../../../../user/domain/user/NullUser";
 import User from "../../../../user/domain/user/User";
+import MySQLAuthInterface from "../../../domain/interfaces/auth/MySQLAuthInterface";
 
-export default class MySQLAuth implements AuthRepositoryPort {
+export default class MySQLAuth implements MySQLAuthInterface {
     logout(_user: User): Promise<void> {
         return Promise.resolve()
     }

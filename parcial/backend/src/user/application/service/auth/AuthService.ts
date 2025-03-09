@@ -4,6 +4,7 @@ import AuthServicePort from "../../../domain/port/driver/service/AuthService";
 import RegisterUser from "../../../domain/user/auth/RegisterUser";
 import NullUser from "../../../domain/user/NullUser";
 import User from "../../../domain/user/User";
+import GetterUser from "../../../infrastructure/helpers/GetterUser";
 
 export default class AuthService implements AuthServicePort {
     constructor(private readonly authRepository: AuthRepositoryPort,
@@ -11,12 +12,17 @@ export default class AuthService implements AuthServicePort {
     ) {
 
     }
-    public login = async (email: string, _password: string): Promise<User> => {
-        const user = await this.userRepository.findByEmail(email)
-        if(user === undefined || user === null) {
+    public login = async (email: string, password: string): Promise<User> => {
+        const userData = await this.userRepository.findByEmail(email)
+        if(userData === undefined || userData === null) {
             return Promise.resolve(new NullUser());
         }
-        this.authRepository
+        const user : User = GetterUser.get(userData) 
+        const isPasswordCorrect : boolean = await this.authRepository.comparePasswords(password,user.getPassword())
+        console.log(isPasswordCorrect)
+        if(!isPasswordCorrect) {
+            return Promise.resolve(new NullUser());
+        }
         return Promise.resolve(user);
     };
     logout(_user: User): Promise<void> {

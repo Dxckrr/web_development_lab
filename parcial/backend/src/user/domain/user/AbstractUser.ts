@@ -5,6 +5,7 @@ export default abstract class AbstractUser {
     protected email: string;
     protected password: string;
     protected role: Role;
+    protected creation_date: Date;
 
     constructor(userInterface: UserInterface) {
         this.id = userInterface.id;
@@ -13,6 +14,7 @@ export default abstract class AbstractUser {
         this.email = userInterface.email;
         this.password = userInterface.password;
         this.role = userInterface.role;
+        this.creation_date = userInterface.creation_date
 
     }
 
@@ -23,7 +25,10 @@ export default abstract class AbstractUser {
     public getEmail(): string { return this.email; }
     public getPassword(): string { return this.password; }
     public getRole(): Role { return this.role; }
+    public getCreationDate(): Date { return this.creation_date; }
+
 }
+
 
 type Role = 'ADMIN' | 'USER';
 interface UserInterface {
@@ -33,6 +38,7 @@ interface UserInterface {
     email: string,
     password: string,
     role: Role
+    creation_date: Date
 
 }
 

@@ -1,14 +1,14 @@
-import MySQLUser from "../../../sql/infrastructure/database/MySQLUser";
+import MySQLUserInterface from "../../../sql/domain/interfaces/MYSQLUserInterface";
 import UserRepositoryPort from "../../domain/port/driven/UserRepositoryPort";
+import { UserInterface } from "../../domain/user/AbstractUser";
 import NullUser from "../../domain/user/NullUser";
 import User from "../../domain/user/User";
 
 export default class UserRepository implements UserRepositoryPort {
-    constructor(private readonly mySQLUser: MySQLUser){
-
+    constructor(private readonly mySQLUser: MySQLUserInterface) {
     }
 
-    async findByEmail(email: string): Promise<User> {
+    async findByEmail(email: string): Promise<UserInterface> {
         return await this.mySQLUser.findByEmail(email)
     }
     findAll = async (): Promise<User[]> => {

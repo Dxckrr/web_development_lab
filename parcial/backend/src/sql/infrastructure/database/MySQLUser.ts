@@ -1,10 +1,10 @@
-import UserRepositoryPort from "../../../user/domain/port/driven/UserRepositoryPort";
 import RegisterUser from "../../../user/domain/user/auth/RegisterUser";
 import NullUser from "../../../user/domain/user/NullUser";
 import User from "../../../user/domain/user/User";
+import MySQLUserInterface from "../../domain/interfaces/MYSQLUserInterface";
 import MySQLDatabase from "./MySQLDatabase";
 
-export default class MySQLUser implements UserRepositoryPort {
+export default class MySQLUser implements MySQLUserInterface {
 
     public async findByEmail(email: string): Promise<any> {
         const query = 'SELECT * FROM buenavidaparcial.users WHERE email = ?;';
