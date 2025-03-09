@@ -1,5 +1,6 @@
 import UserRepositoryPort from "../../domain/port/driven/UserRepositoryPort"
 import UserServicePort from "../../domain/port/driver/service/UserServicePort"
+import { UserInterface } from "../../domain/user/AbstractUser"
 import NullUser from "../../domain/user/NullUser"
 import User from "../../domain/user/User"
 import GetterUser from "../../infrastructure/helpers/GetterUser"
@@ -15,16 +16,35 @@ export default class UserService implements UserServicePort {
         return users.map((user) => GetterUser.get(user))
     }
     public getById = async (id: string): Promise<User> => {
-        if(id === undefined || id === null) {
+        if (id === undefined || id === null) {
             return Promise.resolve(new NullUser())
         }
         const user = await this.userRepository.findById(id)
-        if(user === undefined || user === null){
+        if (user === undefined || user === null) {
             return Promise.resolve(new NullUser())
         }
         return GetterUser.get(user)
     }
-    
+    public update = async (id: string, item: Partial<UserInterface>): Promise<User | boolean> => {
+        if ((id === undefined || id === null) || Object.keys(item).length === 0) {
+            return false;
+        }
+        const success = await this.userRepository.update(id, item);
+        if (!success) {
+            return false;
+        }
+
+        return this.getById(id);
+    }
+    public delete = async (id: string): Promise<boolean> => {
+        if (id === undefined || id === null) {
+            return false;
+        }
+        return await this.userRepository.delete(id);
+    }
+
+
+
 
 }
 

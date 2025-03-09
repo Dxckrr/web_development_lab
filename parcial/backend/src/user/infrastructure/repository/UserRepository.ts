@@ -16,11 +16,11 @@ export default class UserRepository implements UserRepositoryPort {
     async findById(id: string): Promise<UserInterface> {
         return await this.mySQLUser.findById(id)
     }
-    update = (_id: string, _item: Partial<UserInterface>): Promise<boolean | UserInterface> => {
-        throw new Error("Method not implemented.")
+    async update(id: string, item: Partial<UserInterface>): Promise<UserInterface | boolean> {
+        return await this.mySQLUser.update(id, item)
     }
-    delete = (_id: string): Promise<boolean> => {
-        throw new Error("Method not implemented.")
+    async delete(id: string): Promise<boolean> {
+        return await this.mySQLUser.delete(id)
     }
     save = (_item: UserInterface) => {
         throw new Error("Method not implemented.")

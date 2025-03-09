@@ -31,7 +31,7 @@ export default class AuthRepository implements AuthRepositoryPort {
     save = (_item: User): Promise<User> => {
         return Promise.resolve(new NullUser())
     };
-    update = (_id: string, _item: User): Promise<boolean | User> => {
+    update = (_id: string, _item: Partial<User>): Promise<User | boolean> => {
         return Promise.resolve(false)
     };
     patch = (_id: string, _item: Partial<User>): Promise<User> => {

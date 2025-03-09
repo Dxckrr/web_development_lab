@@ -21,11 +21,22 @@ export default class MySQLUser implements MySQLUserInterface {
         res = res[0]
         return res;
     }
-    update = (_id: string, _item: Partial<UserInterface>): Promise<boolean | UserInterface> => {
-        throw new Error("Method not implemented.")
+    public async update(id: string, item: Partial<UserInterface>): Promise<boolean | UserInterface> {
+        const fields = Object.keys(item).map(field => `${field} = ?`).join(', ');
+        const values = Object.values(item);
+        if (fields.length === 0) {
+            return false;
+        }
+        const query = `UPDATE buenavidaparcial.users SET ${fields} WHERE id = ?;`;
+        const result = await MySQLDatabase.executeQuery(query, [...values, id]);
+
+        return result.affectedRows > 0;
     }
-    delete = (_id: string): Promise<boolean> => {
-        throw new Error("Method not implemented.")
+
+    public async delete(id: string): Promise<boolean> {
+        const query = 'DELETE FROM buenavidaparcial.users WHERE id = ?;';
+        const result = await MySQLDatabase.executeQuery(query, [id]);
+        return result.affectedRows > 0;
     }
     save = (_item: UserInterface) => {
         throw new Error("Method not implemented.")
