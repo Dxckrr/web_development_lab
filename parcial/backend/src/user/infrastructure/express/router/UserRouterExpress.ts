@@ -12,7 +12,7 @@ export default class UserRouterExpress implements UserRouterExpressInterface {
   }
 
   public routes(): void {
-
+    this.router.post('/login',this.controller.login.bind(this.controller))
     this.router.get('/health', this.controller.healthCheck.bind(this.controller))
     // this.router.get('/', this.controller.getAllUsers.bind(this.controller))
     // this.router.get('/:id', this.controller.getUserById.bind(this.controller))

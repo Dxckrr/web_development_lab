@@ -1,16 +1,15 @@
-import MySQLUser from "../../../sql/infrastructure/database/MySQLUser";
-import UserRepositoryPort from "../../domain/port/driven/UserRepositoryPort";
-import NullUser from "../../domain/user/NullUser";
-import User from "../../domain/user/User";
+import AuthRepositoryPort from "../../../../user/domain/port/driven/auth/AuthRepositoryPort";
+import RegisterUser from "../../../../user/domain/user/auth/RegisterUser";
+import NullUser from "../../../../user/domain/user/NullUser";
+import User from "../../../../user/domain/user/User";
 
-export default class UserRepository implements UserRepositoryPort {
-    constructor(private readonly mySQLUser: MySQLUser){
-
+export default class MySQLAuth implements AuthRepositoryPort {
+    logout(_user: User): Promise<void> {
+        return Promise.resolve()
     }
-
-    async findByEmail(email: string): Promise<User> {
-        return await this.mySQLUser.findByEmail(email)
-    }
+    register = async (_user: RegisterUser): Promise<User> => {
+        return Promise.resolve(new NullUser())
+    };
     findAll = async (): Promise<User[]> => {
         return Promise.resolve([new NullUser()])
     };

@@ -11,6 +11,7 @@ export default class UserControllerExpress implements UserControllerExpressInter
 
     async login(req: Request, res: Response): Promise<void> {
         const { email, password } = req.body
+        console.log(email , password)
         const user = await this.loginUseCase.login(email, password)
         res.status(200).json(user)
     }

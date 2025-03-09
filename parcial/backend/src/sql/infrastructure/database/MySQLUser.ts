@@ -1,9 +1,17 @@
-import AuthRepositoryPort from "../../../domain/port/driven/auth/AuthRepositoryPort";
-import RegisterUser from "../../../domain/user/auth/RegisterUser";
-import NullUser from "../../../domain/user/NullUser";
-import User from "../../../domain/user/User";
+import UserRepositoryPort from "../../../user/domain/port/driven/UserRepositoryPort";
+import RegisterUser from "../../../user/domain/user/auth/RegisterUser";
+import NullUser from "../../../user/domain/user/NullUser";
+import User from "../../../user/domain/user/User";
+import MySQLDatabase from "./MySQLDatabase";
 
-export default class AuthRepository implements AuthRepositoryPort {
+export default class MySQLUser implements UserRepositoryPort {
+
+    public async findByEmail(email: string): Promise<any> {
+        const query = 'SELECT * FROM buenavidaparcial.users WHERE email = ?;';
+        let resultado = await MySQLDatabase.executeQuery(query, [email]);
+        resultado = resultado[0]
+        return resultado
+    }
 
     logout(_user: User): Promise<void> {
         return Promise.resolve()
@@ -29,4 +37,5 @@ export default class AuthRepository implements AuthRepositoryPort {
     delete = (_id: string): Promise<boolean> => {
         return Promise.resolve(false)
     };
+
 }
