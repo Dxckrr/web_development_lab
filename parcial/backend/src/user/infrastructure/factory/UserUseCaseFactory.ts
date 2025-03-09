@@ -1,6 +1,7 @@
 import PasswordSecurity from "../../../bycrypt/infrastructure/security/PasswordSecurity";
+import JWTService from "../../../jwt/application/service/JWTService";
 import MySQLUser from "../../../sql/infrastructure/database/MySQLUser";
-import LoginService from "../../application/service/auth/AuthService"
+import AuthService from "../../application/service/auth/AuthService"
 import UserService from "../../application/service/UserService";
 import AuthUseCase from "../../application/usecase/auth/AuthUseCase";
 import UserUseCase from "../../application/usecase/UserUseCase";
@@ -11,11 +12,15 @@ import UserRepository from "../repository/UserRepository";
 
 export default class UserUseCaseFactory {
     public static createAuthUseCase(mySQLUser: MySQLUser): UserAuthPort {
+        //bycrypt
         const passwordSecurity = new PasswordSecurity()
+        //repository
         const authRepository = new AuthRepository(passwordSecurity);
         const userRepository = new UserRepository(mySQLUser);
-        const loginService = new LoginService(authRepository, userRepository);
-        return new AuthUseCase(loginService);
+        //service
+        const authService = new AuthService(authRepository, userRepository);
+        const jwtService = new JWTService()
+        return new AuthUseCase(authService, jwtService);
     }
     public static createUserUseCase(mySQLUser: MySQLUser): UserPort {
         const userRepository = new UserRepository(mySQLUser)

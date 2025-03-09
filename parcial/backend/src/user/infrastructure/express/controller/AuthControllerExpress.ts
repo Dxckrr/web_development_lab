@@ -10,8 +10,10 @@ export default class AuthControllerExpress implements AuthControllerExpressInter
     async login(req: Request, res: Response): Promise<void> {
         try {
             const { email, password } = req.body
-            const user = await this.authUseCasePort.login(email, password)
-            res.status(200).json(user)
+            const { user, token } = await this.authUseCasePort.login(email, password)
+
+            res.cookie('token', token);
+            res.status(200).header('auth-token', token).json(user);
         } catch (error) {
             res.status(400).json({ error: 'Server failed' })
         }
