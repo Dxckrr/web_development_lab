@@ -1,23 +1,32 @@
 import { Request, Response } from "express";
 import UserControllerExpressInterface from "../../../domain/interfaces/UserControllerExpressInterface";
-import AuthUseCasePort from "../../../domain/port/driver/usecase/auth/AuthUseCase";
-
+import UserUseCasePort from "../../../domain/port/driver/usecase/UserUseCasePort";
 
 export default class UserControllerExpress implements UserControllerExpressInterface {
 
     constructor(
-        private readonly authUseCasePort: AuthUseCasePort,
+        private readonly userUseCasePort: UserUseCasePort,
     ) { }
-
-    async login(req: Request, res: Response): Promise<void> {
+    async getAll(_req: Request, res: Response): Promise<void> {
         try {
-            const { email, password } = req.body
-            const user = await this.authUseCasePort.login(email, password)
-            res.status(200).json(user)
+            const users = await this.userUseCasePort.getAll();
+            res.status(200).json(users);
         } catch (error) {
-            res.status(400).json({ error: 'Server failed' })
+            res.status(500).json({ error: 'Server failed' })
         }
-
+    }
+    async getById(req: Request, res: Response): Promise<void> {
+        try {
+            const {id} = req.params;
+            const user = await this.userUseCasePort.getById(String(id));
+            res.status(200).json(user);
+        } catch (error) {
+            res.status(500).json({ error: 'Server failed' })
+        }
+    }
+    async update(_req: Request, _res: Response): Promise<void> {
+    }
+    async delete(_req: Request, _res: Response): Promise<void> {
     }
     async healthCheck(_req: Request, res: Response): Promise<void> {
         res.status(200).json({

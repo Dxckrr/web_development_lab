@@ -1,6 +1,7 @@
 import PasswordSecurity from "../../../bycrypt/infrastructure/security/PasswordSecurity";
 import MySQLUser from "../../../sql/infrastructure/database/MySQLUser";
 import LoginService from "../../application/service/auth/AuthService"
+import UserService from "../../application/service/UserService";
 import AuthUseCase from "../../application/usecase/auth/AuthUseCase";
 import UserUseCase from "../../application/usecase/UserUseCase";
 import UserAuthPort from "../../domain/port/driver/usecase/auth/AuthUseCase";
@@ -16,8 +17,10 @@ export default class UserUseCaseFactory {
         const loginService = new LoginService(authRepository, userRepository);
         return new AuthUseCase(loginService);
     }
-    public static createUserUseCase(): UserPort {
-        return new UserUseCase()
+    public static createUserUseCase(mySQLUser: MySQLUser): UserPort {
+        const userRepository = new UserRepository(mySQLUser)
+        const userService = new UserService(userRepository)
+        return new UserUseCase(userService)
 
     }
 

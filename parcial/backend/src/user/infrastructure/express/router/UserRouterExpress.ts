@@ -1,22 +1,36 @@
-import { Router } from 'express'
-import UserRouterExpressInterface from '../../../domain/interfaces/UserRouterExpressInterface'
-import UserControllerExpressInterface from '../../../domain/interfaces/UserControllerExpressInterface'
+import { Router } from 'express';
+import UserRouterExpressInterface from '../../../domain/interfaces/UserRouterExpressInterface';
+import UserControllerExpressInterface from '../../../domain/interfaces/UserControllerExpressInterface';
+import AuthControllerExpressInterface from '../../../domain/interfaces/AuthControllerExpressInterface';
 export default class UserRouterExpress implements UserRouterExpressInterface {
-  router: Router
-  path: string
+  public router: Router;
+  public path: string;
 
-  constructor(private readonly controller: UserControllerExpressInterface) {
-    this.router = Router()
-    this.path = '/user'
-    this.routes()
+  constructor(private readonly controllerUser: UserControllerExpressInterface,
+    private readonly controllerAuth : AuthControllerExpressInterface
+  ) {
+    this.router = Router();
+    this.path = '/user';
+    this.routes();
   }
 
   public routes(): void {
-    this.router.post('/login',this.controller.login.bind(this.controller))
-    this.router.get('/health', this.controller.healthCheck.bind(this.controller))
-    // this.router.get('/', this.controller.getAllUsers.bind(this.controller))
-    // this.router.get('/:id', this.controller.getUserById.bind(this.controller))
-    // this.router.put('/:id', this.controller.updateUser.bind(this.controller))
-    // this.router.delete('/:id', this.controller.deleteUser.bind(this.controller))
+    this.getAuthRoutes();
+    this.getUserRoutes();
+    this.getHealthRoutes();
+  }
+
+  public getAuthRoutes(): void {
+    this.router.post('/login', this.controllerAuth.login.bind(this.controllerAuth));
+  }
+
+  public getUserRoutes(): void {
+    this.router.get('/all', this.controllerUser.getAll.bind(this.controllerUser));
+    this.router.get('/:id', this.controllerUser.getById.bind(this.controllerUser));
+
+  }
+
+  public getHealthRoutes(): void {
+    this.router.get('/health', this.controllerAuth.healthCheck.bind(this.controllerAuth));
   }
 }

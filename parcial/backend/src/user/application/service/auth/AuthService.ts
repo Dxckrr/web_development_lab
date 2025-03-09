@@ -1,6 +1,6 @@
 import AuthRepositoryPort from "../../../domain/port/driven/auth/AuthRepositoryPort";
 import UserRepositoryPort from "../../../domain/port/driven/UserRepositoryPort";
-import AuthServicePort from "../../../domain/port/driver/service/AuthService";
+import AuthServicePort from "../../../domain/port/driver/service/AuthServicePort";
 import RegisterUser from "../../../domain/user/auth/RegisterUser";
 import NullUser from "../../../domain/user/NullUser";
 import User from "../../../domain/user/User";

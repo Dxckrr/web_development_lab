@@ -1,7 +1,6 @@
 import RepositoryInterface from "../../../../repository/domain/RepositoryInterface";
 import { UserInterface } from "../../user/AbstractUser";
-import User from "../../user/User";
 
-export default interface UserRepositoryPort extends RepositoryInterface<string, User> {
+export default interface UserRepositoryPort extends RepositoryInterface<string, UserInterface> {
     findByEmail(email: string): Promise<UserInterface>
 }
