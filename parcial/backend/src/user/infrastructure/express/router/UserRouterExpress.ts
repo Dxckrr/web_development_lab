@@ -22,9 +22,11 @@ export default class UserRouterExpress implements UserRouterExpressInterface {
 
   public getAuthRoutes(): void {
     this.router.post('/login', this.controllerAuth.login.bind(this.controllerAuth));
+    this.router.post('/register', this.controllerAuth.register.bind(this.controllerAuth));
   }
 
   public getUserRoutes(): void {
+    this.router.post('/create', this.controllerUser.create.bind(this.controllerUser)); 
     this.router.get('/all', this.controllerUser.getAll.bind(this.controllerUser));
     this.router.get('/:id', this.controllerUser.getById.bind(this.controllerUser));
     this.router.put('/:id', this.controllerUser.update.bind(this.controllerUser));

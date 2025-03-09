@@ -1,8 +1,28 @@
 import { UserInterface } from "../../../user/domain/user/AbstractUser";
+import { RegisterUserInterface } from "../../../user/domain/user/auth/AbstractRegisterUser";
 import MySQLUserInterface from "../../domain/interfaces/MYSQLUserInterface";
 import MySQLDatabase from "./MySQLDatabase";
 
 export default class MySQLUser implements MySQLUserInterface {
+    public async create(user: RegisterUserInterface): Promise<UserInterface | null> {
+        const query = `
+            INSERT INTO buenavidaparcial.users (names, surnames, email, password, role) 
+            VALUES (?, ?, ?, ?, ?);
+        `;
+        const values = [
+            user.names,
+            user.surnames,
+            user.email,
+            user.password,
+            user.role,
+        ];
+        const result = await MySQLDatabase.executeQuery(query, values);
+
+        if (result.affectedRows > 0) {
+            return { ...user, id: result.insertId, creation_date: new Date() };
+        }
+        return null
+    }
 
     public async findByEmail(email: string): Promise<UserInterface> {
         const query = 'SELECT * FROM buenavidaparcial.users WHERE email = ?;';

@@ -1,6 +1,6 @@
 import AuthServicePort from "../../../domain/port/driver/service/AuthServicePort"
 import UserAuthPort from "../../../domain/port/driver/usecase/auth/AuthUseCase"
-import RegisterUser from "../../../domain/user/auth/RegisterUser"
+import { RegisterUserInterface } from "../../../domain/user/auth/AbstractRegisterUser"
 import User from "../../../domain/user/User"
 
 export default class AuthUseCase implements UserAuthPort {
@@ -8,10 +8,10 @@ export default class AuthUseCase implements UserAuthPort {
     async login(email: string, password: string): Promise<User> {
         return await this.authService.login(email, password)
     }
-    logout(_user: User): Promise<void> {
-        throw new Error("Method not implemented.")
+    async register(user: RegisterUserInterface): Promise<User> {
+        return await this.authService.register(user)
     }
-    register(_user: RegisterUser): Promise<User> {
+    logout(_user: User): Promise<void> {
         throw new Error("Method not implemented.")
     }
 }

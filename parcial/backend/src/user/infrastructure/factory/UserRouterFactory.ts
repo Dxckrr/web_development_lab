@@ -14,6 +14,7 @@ export default class UserRouterFactory {
     // controller
     const userController = new UserControllerExpress(userUseCase)
     const authController = new AuthControllerExpress(authUseCase)
+    
     return new UserRouterExpress(userController,authController)
   }
 }

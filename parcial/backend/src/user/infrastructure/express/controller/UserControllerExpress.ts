@@ -1,12 +1,20 @@
 import { Request, Response } from "express";
 import UserControllerExpressInterface from "../../../domain/interfaces/UserControllerExpressInterface";
 import UserUseCasePort from "../../../domain/port/driver/usecase/UserUseCasePort";
-
 export default class UserControllerExpress implements UserControllerExpressInterface {
 
     constructor(
         private readonly userUseCasePort: UserUseCasePort,
     ) { }
+    async create(req: Request, res: Response): Promise<void> {
+        try {
+            const newUser = await this.userUseCasePort.create(req.body);
+            res.status(201).json(newUser);
+        } catch (error) {
+            res.status(500).json({ error: 'Server failed' })
+        }
+        res.status(201).json({ message: 'User created successfully' });
+    }
     async getAll(_req: Request, res: Response): Promise<void> {
         try {
             const users = await this.userUseCasePort.getAll();

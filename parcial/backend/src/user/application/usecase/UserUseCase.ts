@@ -1,10 +1,14 @@
 import UserServicePort from "../../domain/port/driver/service/UserServicePort";
 import UserPort from "../../domain/port/driver/usecase/UserUseCasePort";
 import { UserInterface } from "../../domain/user/AbstractUser";
+import { RegisterUserInterface } from "../../domain/user/auth/AbstractRegisterUser";
 import User from "../../domain/user/User";
 
 export default class UserUseCase implements UserPort {
     constructor(private readonly userService: UserServicePort) { }
+    async create(user: RegisterUserInterface): Promise<User | null> {
+        return await this.userService.create(user)
+    }
     async getAll(): Promise<User[]> {
         return await this.userService.getAll()
     }

@@ -1,6 +1,3 @@
-
-
-
 import { Request, Response } from "express";
 import AuthUseCasePort from "../../../domain/port/driver/usecase/auth/AuthUseCase";
 import AuthControllerExpressInterface from "../../../domain/interfaces/AuthControllerExpressInterface";
@@ -20,12 +17,10 @@ export default class AuthControllerExpress implements AuthControllerExpressInter
         }
 
     }
-    async register(_req: Request, res: Response): Promise<void> {
+    async register(req: Request, res: Response): Promise<void> {
         try {
-            res.send("OK")
-            // const { email, password } = req.body;
-            // const newUser = await this.authUseCasePort.register(email, password);
-            // res.status(201).json(newUser);
+            const newUser = await this.authUseCasePort.register(req.body);
+            res.status(201).json(newUser);
         } catch (error) {
             res.status(400).json({ error: 'Registration failed' });
         }

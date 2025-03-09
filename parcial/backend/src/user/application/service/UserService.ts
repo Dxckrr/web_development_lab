@@ -1,6 +1,7 @@
 import UserRepositoryPort from "../../domain/port/driven/UserRepositoryPort"
 import UserServicePort from "../../domain/port/driver/service/UserServicePort"
 import { UserInterface } from "../../domain/user/AbstractUser"
+import { RegisterUserInterface } from "../../domain/user/auth/AbstractRegisterUser"
 import NullUser from "../../domain/user/NullUser"
 import User from "../../domain/user/User"
 import GetterUser from "../../infrastructure/helpers/GetterUser"
@@ -8,8 +9,14 @@ import GetterUser from "../../infrastructure/helpers/GetterUser"
 export default class UserService implements UserServicePort {
     constructor(
         private readonly userRepository: UserRepositoryPort
-    ) {
+    ) { }
 
+    public create = async (user: RegisterUserInterface): Promise<User | null> => {
+        const newUser = await this.userRepository.create(user)
+        if (newUser === undefined || newUser === null) {
+            return Promise.resolve(new NullUser())
+        }
+        return GetterUser.get(newUser)
     }
     public getAll = async (): Promise<User[]> => {
         const users = await this.userRepository.findAll()
@@ -42,10 +49,6 @@ export default class UserService implements UserServicePort {
         }
         return await this.userRepository.delete(id);
     }
-
-
-
-
 }
 
 

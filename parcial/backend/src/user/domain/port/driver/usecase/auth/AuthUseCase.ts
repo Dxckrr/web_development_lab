@@ -1,8 +1,8 @@
-import RegisterUser from "../../../../user/auth/RegisterUser";
+import { RegisterUserInterface } from "../../../../user/auth/AbstractRegisterUser";
 import User from "../../../../user/User";
 
 export default interface AuthUseCasePort {
     login(email: string, password: string): Promise<User>;
     logout(user: User): Promise<void>;
-    register(user: RegisterUser): Promise<User>;
+    register(user: RegisterUserInterface): Promise<User>;
 }
