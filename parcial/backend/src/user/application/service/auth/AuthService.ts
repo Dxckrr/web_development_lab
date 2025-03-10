@@ -4,7 +4,7 @@ import AuthServicePort from "../../../domain/port/driver/service/AuthServicePort
 import { RegisterUserInterface } from "../../../domain/user/auth/AbstractRegisterUser";
 import NullUser from "../../../domain/user/NullUser";
 import User from "../../../domain/user/User";
-import GetterUser from "../../../infrastructure/helpers/GetterUser";
+import GetterUser from "../GetterUser";
 
 export default class AuthService implements AuthServicePort {
     constructor(private readonly authRepository: AuthRepositoryPort,

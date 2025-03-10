@@ -30,7 +30,7 @@ export default class AuthControllerExpress implements AuthControllerExpressInter
 
     async healthCheck(_req: Request, res: Response): Promise<void> {
         res.status(200).json({
-            message: 'User/Auth Health check active'
+            message: 'Auth Health check active'
         })
     }
 }

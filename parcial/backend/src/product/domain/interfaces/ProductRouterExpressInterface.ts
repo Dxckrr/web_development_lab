@@ -2,4 +2,7 @@ import RouterExpressInterface from '../../../express/domain/RouterExpressInterfa
 
 export default interface ProductRouterExpressInterface
   extends RouterExpressInterface {
-  }
+  getProductRoutes(): void
+  getHealthRoutes(): void
+
+}

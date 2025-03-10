@@ -6,7 +6,7 @@ import UserService from "../../application/service/UserService";
 import AuthUseCase from "../../application/usecase/auth/AuthUseCase";
 import UserUseCase from "../../application/usecase/UserUseCase";
 import UserAuthPort from "../../domain/port/driver/usecase/auth/AuthUseCase";
-import UserPort from "../../domain/port/driver/usecase/UserUseCasePort";
+import UserUseCasePort from "../../domain/port/driver/usecase/UserUseCasePort";
 import AuthRepository from "../repository/auth/AuthRepository"
 import UserRepository from "../repository/UserRepository";
 
@@ -22,7 +22,7 @@ export default class UserUseCaseFactory {
         const jwtService = new JWTService()
         return new AuthUseCase(authService, jwtService);
     }
-    public static createUserUseCase(mySQLUser: MySQLUser): UserPort {
+    public static createUserUseCase(mySQLUser: MySQLUser): UserUseCasePort {
         const userRepository = new UserRepository(mySQLUser)
         const userService = new UserService(userRepository)
         return new UserUseCase(userService)

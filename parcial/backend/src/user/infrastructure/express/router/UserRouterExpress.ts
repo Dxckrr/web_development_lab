@@ -35,6 +35,7 @@ export default class UserRouterExpress implements UserRouterExpressInterface {
   }
 
   public getHealthRoutes(): void {
-    this.router.get('/health', this.controllerAuth.healthCheck.bind(this.controllerAuth));
+    this.router.get('/health/auth', this.controllerAuth.healthCheck.bind(this.controllerAuth));
+    this.router.get('/health/user', this.controllerUser.healthCheck.bind(this.controllerUser));
   }
 }

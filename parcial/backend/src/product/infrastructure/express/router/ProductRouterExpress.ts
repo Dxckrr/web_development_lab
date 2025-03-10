@@ -1,17 +1,33 @@
 import { Router } from 'express'
-import MovieControllerExpressInterface from '../../../domain/interfaces/ProductControllerExpressInterface'
 import ProductRouterExpressInterface from '../../../domain/interfaces/ProductRouterExpressInterface'
+import ProductControllerExpressInterface from '../../../domain/interfaces/ProductControllerExpressInterface'
 
 export default class ProductRouterExpress implements ProductRouterExpressInterface {
   router: Router
   path: string
 
-  constructor(private readonly controller: MovieControllerExpressInterface) {
+  constructor(private readonly controller: ProductControllerExpressInterface) {
     this.router = Router()
     this.path = '/products'
     this.routes()
   }
 
   public routes(): void {
+    this.getProductRoutes()
+    this.getHealthRoutes()
   }
+  public getProductRoutes(): void {
+    this.router.post('/create', this.controller.create.bind(this.controller))
+    this.router.get('/all', this.controller.getAll.bind(this.controller))
+    this.router.get('/:id', this.controller.getById.bind(this.controller))
+    this.router.put('/:id', this.controller.update.bind(this.controller))
+    this.router.delete('/:id', this.controller.delete.bind(this.controller))
+    this.router.get('/category/:category', this.controller.getByCategory.bind(this.controller))
+    this.router.get('/price/:min/:max', this.controller.getBetweenPrice.bind(this.controller))
+
+  }
+  public getHealthRoutes(): void {
+    this.router.get('/health/product', this.controller.healthCheck.bind(this.controller))
+  }
+
 }
