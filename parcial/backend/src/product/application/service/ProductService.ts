@@ -6,8 +6,14 @@ export default class ProductService implements ProductServicePort {
     async getProducts(): Promise<Product[]> {
         return await this.productRepository.findAll();
     }
-    getProductById(_productId: string): Promise<Product> {
-        throw new Error("Method not implemented.");
+    async getProductById(productId: string): Promise<Product> {
+        return await this.productRepository.findById(productId);
+    }
+    async getProductsByCategory(categoryId: string): Promise<Product[]> {
+        return await this.productRepository.getByCategory(categoryId);
+    }
+    async getProductsByPriceRange(minPrice: number, maxPrice: number): Promise<Product[]> {
+        return await this.productRepository.getByPriceRange(minPrice,maxPrice);
     }
     addProduct(_product: Product): Promise<void> {
         throw new Error("Method not implemented.");
@@ -16,12 +22,6 @@ export default class ProductService implements ProductServicePort {
         throw new Error("Method not implemented.");
     }
     deleteProduct(_productId: string): Promise<void> {
-        throw new Error("Method not implemented.");
-    }
-    searchProductsByCategory(_categoryId: string): Promise<Product[]> {
-        throw new Error("Method not implemented.");
-    }
-    searchProductsByPriceRange(_minPrice: number, _maxPrice: number): Promise<Product[]> {
         throw new Error("Method not implemented.");
     }
 

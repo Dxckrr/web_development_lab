@@ -13,9 +13,46 @@ export default class ProductController implements ProductControllerExpressInterf
             res.status(500).json({ message: "Error retrieving products", error });
         }
     }
-    async getById(_req: Request, res: Response): Promise<void> {
-        res.status(501).json({ message: "Method not implemented." });
+    async getById(req: Request, res: Response): Promise<void> {
+        try {
+            const { id } = req.params
+            const product = await this.productUseCase.getProductById(String(id));
+            res.status(200).json(product);
+        } catch (error) {
+            res.status(500).json({ message: "Error getting product", error });
+        }
     }
+
+    async getByCategory(req: Request, res: Response): Promise<void> {
+        try {
+            const { categoryId } = req.params
+            const products = await this.productUseCase.getProductsByCategory(String(categoryId));
+            res.status(200).json(products);
+        } catch (error) {
+            res.status(500).json({ message: "Error retrieving products", error });
+        }
+    }
+
+    async getByPriceRange(req: Request, res: Response): Promise<void> {
+        try {
+            const { minPrice, maxPrice } = req.query;
+            if (minPrice === undefined || maxPrice === undefined || isNaN(Number(minPrice)) || isNaN(Number(maxPrice))) {
+                res.status(400).json({ message: "Both minPrice and maxPrice must be valid numbers." });
+                return;
+            }
+            const min = Number(minPrice);
+            const max = Number(maxPrice);
+            if (min > max) {
+                res.status(400).json({ message: "Min price must be less than max price." });
+                return;
+            }
+            const products = await this.productUseCase.getProductsByPriceRange(min, max);
+            res.status(200).json(products);
+        } catch (error) {
+            res.status(500).json({ message: "Error retrieving products", error });
+        }
+    }
+
 
     async create(_req: Request, res: Response): Promise<void> {
         res.status(501).json({ message: "Method not implemented." });
@@ -28,12 +65,7 @@ export default class ProductController implements ProductControllerExpressInterf
     async delete(_req: Request, res: Response): Promise<void> {
         res.status(501).json({ message: "Method not implemented." });
     }
-
-    async getByCategory(_req: Request, res: Response): Promise<void> {
-        res.status(501).json({ message: "Method not implemented." });
-    }
-
-    async getBetweenPrice(_req: Request, res: Response): Promise<void> {
+    async updateStock(_req: Request, res: Response): Promise<void> {
         res.status(501).json({ message: "Method not implemented." });
     }
     async healthCheck(_req: Request, res: Response): Promise<void> {

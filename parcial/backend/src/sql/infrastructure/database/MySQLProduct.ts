@@ -7,5 +7,19 @@ export default class MySQLProduct implements MySQLProductInterface {
         const query = 'SELECT * FROM buenavidaparcial.products;';
         return await MySQLDatabase.executeQuery(query);
     }
+    async findById(id: string): Promise<ProductSQL> {
+        const query = 'SELECT * FROM buenavidaparcial.products WHERE id = ?;';
+        const res = await MySQLDatabase.executeQuery(query, [id]);
+        return res[0];
+    }
+    async findByCategoryId(category: string): Promise<ProductSQL[]> {
+        const query = 'SELECT * FROM buenavidaparcial.products WHERE category_id =?;';
+        return await MySQLDatabase.executeQuery(query, [category]);
+    }
+    async findByPriceRange(minPrice: number, maxPrice: number): Promise<ProductSQL[]> {
+        const query = 'SELECT * FROM buenavidaparcial.products WHERE price BETWEEN ? AND ? ;';
+        return await MySQLDatabase.executeQuery(query, [minPrice, maxPrice]);
+    }
+
 
 }

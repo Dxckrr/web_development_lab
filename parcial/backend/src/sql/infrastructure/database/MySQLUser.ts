@@ -27,8 +27,7 @@ export default class MySQLUser implements MySQLUserInterface {
     public async findByEmail(email: string): Promise<UserInterface> {
         const query = 'SELECT * FROM buenavidaparcial.users WHERE email = ?;';
         let res = await MySQLDatabase.executeQuery(query, [email]);
-        res = res[0]
-        return res
+        return res[0]
     }
 
     public async findAll(): Promise<UserInterface[]> {
@@ -38,8 +37,7 @@ export default class MySQLUser implements MySQLUserInterface {
     public async findById(id: string): Promise<UserInterface> {
         const query = 'SELECT * FROM buenavidaparcial.users WHERE id = ?;';
         let res = await MySQLDatabase.executeQuery(query, [id]);
-        res = res[0]
-        return res;
+        return res[0]
     }
     public async update(id: string, item: Partial<UserInterface>): Promise<boolean | UserInterface> {
         const fields = Object.keys(item).map(field => `${field} = ?`).join(', ');

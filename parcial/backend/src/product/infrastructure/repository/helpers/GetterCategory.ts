@@ -12,7 +12,7 @@ export default class GetterCategory {
         if (id === 0) {
             return new NullCategory();
         }
-        const sqlCategory = await this.mySQLCategory.findCategoryById(String(id));
+        const sqlCategory = await this.mySQLCategory.findById(String(id));
         const category = new Category({
             id: sqlCategory.id,
             name: sqlCategory.name,

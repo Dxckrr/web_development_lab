@@ -18,12 +18,16 @@ export default class ProductRouterExpress implements ProductRouterExpressInterfa
   }
   public getProductRoutes(): void {
     this.router.post('/create', this.controller.create.bind(this.controller))
+
     this.router.get('/all', this.controller.getAll.bind(this.controller))
     this.router.get('/:id', this.controller.getById.bind(this.controller))
+    this.router.get('/category/:categoryId', this.controller.getByCategory.bind(this.controller))
+    this.router.get('/product/price', this.controller.getByPriceRange.bind(this.controller))
+
     this.router.put('/:id', this.controller.update.bind(this.controller))
+    this.router.put('/stock/:id/:quantity', this.controller.updateStock.bind(this.controller))
+
     this.router.delete('/:id', this.controller.delete.bind(this.controller))
-    this.router.get('/category/:category', this.controller.getByCategory.bind(this.controller))
-    this.router.get('/price/:min/:max', this.controller.getBetweenPrice.bind(this.controller))
 
   }
   public getHealthRoutes(): void {

@@ -11,6 +11,13 @@ export default class ProductUseCase implements ProductUseCasePort {
     async getProductById(productId: string): Promise<Product> {
         return await this.productService.getProductById(productId)
     }
+    async getProductsByCategory(categoryId: string): Promise<Product[]> {
+        return await this.productService.getProductsByCategory(categoryId)
+    }
+    async getProductsByPriceRange(minPrice: number, maxPrice: number): Promise<Product[]> {
+        return await this.productService.getProductsByPriceRange(minPrice, maxPrice)
+    }
+    
     async addProduct(product: Product): Promise<void> {
         await this.productService.addProduct(product)
     }
@@ -19,12 +26,6 @@ export default class ProductUseCase implements ProductUseCasePort {
     }
     async deleteProduct(productId: string): Promise<void> {
         await this.productService.deleteProduct(productId)
-    }
-    async searchProductsByCategory(categoryId: string): Promise<Product[]> {
-        return await this.productService.searchProductsByCategory(categoryId)
-    }
-    async searchProductsByPriceRange(minPrice: number, maxPrice: number): Promise<Product[]> {
-        return await this.productService.searchProductsByPriceRange(minPrice, maxPrice)
     }
 
 }

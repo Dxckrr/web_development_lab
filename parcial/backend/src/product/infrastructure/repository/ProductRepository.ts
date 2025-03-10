@@ -5,7 +5,7 @@ import GetterProduct from "./helpers/GetterProduct";
 export default class ProductRepository implements ProductRepositoryPort {
     constructor(
         private readonly mySQLProduct: MySQLProductInterface,
-        private readonly getterProduct : GetterProduct
+        private readonly getterProduct: GetterProduct
     ) { }
 
     save = (_item: Product) => {
@@ -15,10 +15,19 @@ export default class ProductRepository implements ProductRepositoryPort {
         const products = await this.mySQLProduct.findAllProducts();
         return Promise.all(products.map((product) => this.getterProduct.get(product)));
     }
-    findById = (_id: string) => {
-        throw new Error("Method not implemented.")
+    async findById(id: string): Promise<Product> {
+        const product = await this.mySQLProduct.findById(id);
+        return this.getterProduct.get(product);
+    };
+    async getByCategory(categoryId: string): Promise<Product[]> {
+        const products = await this.mySQLProduct.findByCategoryId(categoryId);
+        return Promise.all(products.map((product) => this.getterProduct.get(product)));
     }
-        ;
+    async getByPriceRange(minPrice: number, maxPrice: number): Promise<Product[]> {
+        const products = await this.mySQLProduct.findByPriceRange(minPrice,maxPrice);
+        return Promise.all(products.map((product) => this.getterProduct.get(product)));
+    }
+
     update = (_id: string, _item: Partial<Product>) => {
         throw new Error("Method not implemented.")
     }
@@ -29,10 +38,5 @@ export default class ProductRepository implements ProductRepositoryPort {
     patch = (_id: string, _item: Partial<Product>) => {
         throw new Error("Method not implemented.")
     }
-    findByCategory(_category: string): Promise<Product[]> {
-        throw new Error("Method not implemented.");
-    }
-    findByPriceRange(_minPrice: number, _maxPrice: number): Promise<Product[]> {
-        throw new Error("Method not implemented.");
-    }
+
 }
