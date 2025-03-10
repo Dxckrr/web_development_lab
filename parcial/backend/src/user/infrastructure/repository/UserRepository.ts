@@ -7,7 +7,7 @@ export default class UserRepository implements UserRepositoryPort {
     constructor(private readonly mySQLUser: MySQLUserInterface) {
     }
     async create(user: RegisterUserInterface): Promise<UserInterface | null> {
-        return await this.mySQLUser.create(user)
+        return await this.mySQLUser.createUser(user)
     }
     async findByEmail(email: string): Promise<UserInterface> {
         return await this.mySQLUser.findByEmail(email)

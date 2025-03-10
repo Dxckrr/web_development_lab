@@ -4,7 +4,7 @@ import MySQLUserInterface from "../../domain/interfaces/MYSQLUserInterface";
 import MySQLDatabase from "./MySQLDatabase";
 
 export default class MySQLUser implements MySQLUserInterface {
-    public async create(user: RegisterUserInterface): Promise<UserInterface | null> {
+    public async createUser(user: RegisterUserInterface): Promise<UserInterface | null> {
         const query = `
             INSERT INTO buenavidaparcial.users (names, surnames, email, password, role) 
             VALUES (?, ?, ?, ?, ?);
@@ -57,12 +57,5 @@ export default class MySQLUser implements MySQLUserInterface {
         const query = 'DELETE FROM buenavidaparcial.users WHERE id = ?;';
         const result = await MySQLDatabase.executeQuery(query, [id]);
         return result.affectedRows > 0;
-    }
-    save = (_item: UserInterface) => {
-        throw new Error("Method not implemented.")
-    }
-        ;
-    patch = (_id: string, _item: Partial<UserInterface>) => {
-        throw new Error("Method not implemented.")
     }
 }
