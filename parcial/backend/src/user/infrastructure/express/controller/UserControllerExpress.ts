@@ -45,7 +45,7 @@ export default class UserControllerExpress implements UserControllerExpressInter
         try {
             const { id } = req.params;
             const deleted = await this.userUseCasePort.deleteUser(String(id));
-            if (deleted) res.status(200).json('User deleted successfully');
+            if (deleted) res.status(200).json({ message: 'User deleted successfully' });
         } catch (error) {
             res.status(500).json({ error: 'Server failed' })
         }

@@ -8,7 +8,7 @@ export default interface ProductControllerExpressInterface extends ControllerExp
     update: (req: Request, res: Response) => Promise<void>
     delete: (req: Request, res: Response) => Promise<void>
 
-    getByCategory: (req: Request, res: Response) => Promise<void>
+    getByCategoryId: (req: Request, res: Response) => Promise<void>
     getByPriceRange: (req: Request, res: Response) => Promise<void>
     updateStock: (req: Request , res: Response) => Promise<void>
 }

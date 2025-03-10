@@ -5,8 +5,8 @@ export default interface ProductUseCasePort {
     getProductById(productId: string): Promise<Product>;
     addProduct(product: Product): Promise<void>;
     updateProduct(product: Product): Promise<void>;
-    deleteProduct(productId: string): Promise<void>;
-    getProductsByCategory(categoryId: string): Promise<Product[]>;
+    deleteProduct(productId: string): Promise<boolean>;
+    getProductsByCategoryId(categoryId: string): Promise<Product[]>;
     getProductsByPriceRange(minPrice: number, maxPrice: number): Promise<Product[]>;
     
 }

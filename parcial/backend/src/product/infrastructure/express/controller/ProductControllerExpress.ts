@@ -23,10 +23,10 @@ export default class ProductController implements ProductControllerExpressInterf
         }
     }
 
-    async getByCategory(req: Request, res: Response): Promise<void> {
+    async getByCategoryId(req: Request, res: Response): Promise<void> {
         try {
             const { categoryId } = req.params
-            const products = await this.productUseCase.getProductsByCategory(String(categoryId));
+            const products = await this.productUseCase.getProductsByCategoryId(String(categoryId));
             res.status(200).json(products);
         } catch (error) {
             res.status(500).json({ message: "Error retrieving products", error });
@@ -52,18 +52,23 @@ export default class ProductController implements ProductControllerExpressInterf
             res.status(500).json({ message: "Error retrieving products", error });
         }
     }
-
-
-    async create(_req: Request, res: Response): Promise<void> {
-        res.status(501).json({ message: "Method not implemented." });
+    async create(req: Request, res: Response): Promise<void> {
+        await this.productUseCase.addProduct(req.body)
+        res.status(201).json({ message: 'Product created successfully' });
     }
 
     async update(_req: Request, res: Response): Promise<void> {
         res.status(501).json({ message: "Method not implemented." });
     }
 
-    async delete(_req: Request, res: Response): Promise<void> {
-        res.status(501).json({ message: "Method not implemented." });
+    async delete(req: Request, res: Response): Promise<void> {
+        try {
+            const { id } = req.params
+            const deleted = await this.productUseCase.deleteProduct(String(id));
+            if (deleted) res.status(200).json({ message: 'Product deleted successfully' });
+        } catch (error) {
+            res.status(500).json({ message: "Error deleting product", error });
+        }
     }
     async updateStock(_req: Request, res: Response): Promise<void> {
         res.status(501).json({ message: "Method not implemented." });

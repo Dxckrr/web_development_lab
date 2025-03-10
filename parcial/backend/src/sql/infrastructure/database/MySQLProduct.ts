@@ -20,6 +20,11 @@ export default class MySQLProduct implements MySQLProductInterface {
         const query = 'SELECT * FROM buenavidaparcial.products WHERE price BETWEEN ? AND ? ;';
         return await MySQLDatabase.executeQuery(query, [minPrice, maxPrice]);
     }
+    async deleteById(id: string): Promise<boolean> {
+        const query = 'DELETE FROM buenavidaparcial.products WHERE id =?;';
+        const res = await MySQLDatabase.executeQuery(query, [id]);
+        return res.affectedRows > 0;
+    }
 
 
 }
