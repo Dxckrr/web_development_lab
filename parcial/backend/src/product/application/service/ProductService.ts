@@ -2,8 +2,12 @@ import Product from "../../domain/product/Product";
 import ProductServicePort from "../../domain/port/driver/service/ProductService";
 import ProductRepositoryPort from "../../domain/port/driven/ProductRepositoryPort";
 import NullProduct from "../../domain/product/NullProduct";
+import ImageRepositoryPort from "../../domain/port/driven/ImageRepositoryPort";
+
 export default class ProductService implements ProductServicePort {
-    constructor(private readonly productRepository: ProductRepositoryPort) { }
+    constructor(private readonly productRepository: ProductRepositoryPort,
+        private readonly imageRepository: ImageRepositoryPort
+    ) { }
     async getProducts(): Promise<Product[]> {
         const products = await this.productRepository.findAll();
         if (products.length === 0) {
@@ -49,6 +53,9 @@ export default class ProductService implements ProductServicePort {
     }
     async deleteProduct(productId: string): Promise<boolean> {
         return await this.productRepository.delete(productId)
+    }
+    getImage(filename: string): string {
+        return this.imageRepository.getImage(filename)
     }
 
 }

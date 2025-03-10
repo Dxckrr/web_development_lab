@@ -1,7 +1,6 @@
 import { Request, Response } from "express";
 import ProductControllerExpressInterface from "../../../domain/interfaces/ProductControllerExpressInterface";
 import ProductUseCasePort from "../../../domain/port/driver/usecase/ProductUseCase";
-
 export default class ProductController implements ProductControllerExpressInterface {
     constructor(private readonly productUseCase: ProductUseCasePort) { }
 
@@ -78,4 +77,17 @@ export default class ProductController implements ProductControllerExpressInterf
             message: 'Product Health check active'
         })
     }
+    async getImage(req: Request, res: Response): Promise<void> {
+        const { filename } = req.params;
+        if(filename === undefined || filename === null) {
+            res.status(400).json({ message: "Filename parameter is required" });
+            return;
+        }
+        const image = this.productUseCase.getImage(filename)
+        if(image === "") {
+            res.status(404).json({ message: "Image not found" });
+            return;
+        }
+        res.sendFile(image);
+    };
 }

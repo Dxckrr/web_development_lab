@@ -23,6 +23,7 @@ export default class ProductRouterExpress implements ProductRouterExpressInterfa
     this.router.get('/:id', this.controller.getById.bind(this.controller))
     this.router.get('/category/:categoryId', this.controller.getByCategoryId.bind(this.controller))
     this.router.get('/product/price', this.controller.getByPriceRange.bind(this.controller))
+    this.router.get("/image/:filename",this.controller.getImage.bind(this.controller));
 
     this.router.put('/:id', this.controller.update.bind(this.controller))
     this.router.put('/stock/:id/:quantity', this.controller.updateStock.bind(this.controller))

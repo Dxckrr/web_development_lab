@@ -8,5 +8,6 @@ export default interface ProductServicePort {
     deleteProduct(productId: string): Promise<boolean>;
     getProductsByCategory(categoryId: string): Promise<Product[]>;
     getProductsByPriceRange(minPrice: number, maxPrice: number): Promise<Product[]>;
+    getImage(filename: string) : string;
 
 }

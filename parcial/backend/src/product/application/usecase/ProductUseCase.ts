@@ -3,7 +3,7 @@ import ProductUseCasePort from "../../domain/port/driver/usecase/ProductUseCase"
 import Product from "../../domain/product/Product";
 
 export default class ProductUseCase implements ProductUseCasePort {
-    constructor(private readonly productService : ProductServicePort){}
+    constructor(private readonly productService: ProductServicePort) { }
     public async getProducts(): Promise<Product[]> {
         return await this.productService.getProducts();
     }
@@ -24,6 +24,9 @@ export default class ProductUseCase implements ProductUseCasePort {
     }
     async deleteProduct(productId: string): Promise<boolean> {
         return await this.productService.deleteProduct(productId)
+    }
+    getImage(filename: string): string {
+        return this.productService.getImage(filename)
     }
 
 }

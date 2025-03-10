@@ -8,5 +8,6 @@ export default interface ProductUseCasePort {
     deleteProduct(productId: string): Promise<boolean>;
     getProductsByCategoryId(categoryId: string): Promise<Product[]>;
     getProductsByPriceRange(minPrice: number, maxPrice: number): Promise<Product[]>;
-    
+    getImage(filename: string): string;
+
 }
