@@ -5,7 +5,7 @@ export default abstract class AbstractRegisterUser {
     protected surnames: string
     protected email: string
     protected password: string
-    protected role : string
+    protected role : Role
 
     constructor(registerUserInterface: RegisterUserInterface) {
         this.names = registerUserInterface.names;
