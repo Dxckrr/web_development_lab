@@ -23,9 +23,6 @@ export default class GetterCart {
         
         await Promise.all(promises);
         
-
-
-        console.log(promises)
         const cart: CartInterface = {
             id: cartSQL.id,
             userOwner,
