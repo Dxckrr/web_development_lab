@@ -19,6 +19,9 @@ export default class ProductUseCase implements ProductUseCasePort {
     async addProduct(product: Product): Promise<void> {
         await this.productService.addProduct(product)
     }
+    async updateStock(id: string, quantity: number): Promise<Product> {
+        return await this.productService.updateStock(id, quantity)
+    }
     async updateProduct(product: Product): Promise<void> {
         await this.productService.updateProduct(product)
     }
@@ -28,5 +31,6 @@ export default class ProductUseCase implements ProductUseCasePort {
     getImage(filename: string): string {
         return this.productService.getImage(filename)
     }
+    
 
 }

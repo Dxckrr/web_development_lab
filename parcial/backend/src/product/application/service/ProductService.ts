@@ -48,6 +48,13 @@ export default class ProductService implements ProductServicePort {
     async addProduct(product: Product): Promise<Product> {
         return await this.productRepository.save(product)
     }
+    async updateStock(id: string, quantity: number): Promise<Product> {
+        const success = await this.productRepository.updateProductStock(id, quantity)
+        if (!success) {
+            return new NullProduct();
+        }
+        return await this.getProductById(id);
+    }
     updateProduct(_product: Product): Promise<void> {
         throw new Error("Method not implemented.");
     }

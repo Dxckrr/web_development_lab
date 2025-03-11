@@ -25,6 +25,11 @@ export default class MySQLProduct implements MySQLProductInterface {
         const res = await MySQLDatabase.executeQuery(query, [id]);
         return res.affectedRows > 0;
     }
+    async updateProductStock(id: string, item: number): Promise<boolean> {
+        const query = 'UPDATE buenavidaparcial.products SET stock = stock + ? WHERE id = ?;';
+        const res = await MySQLDatabase.executeQuery(query, [item, id]);
+        return res.affectedRows > 0;
+    }
 
 
 }

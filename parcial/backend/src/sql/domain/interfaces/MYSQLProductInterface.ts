@@ -7,4 +7,5 @@ export default interface MySQLProductInterface {
     findByCategoryId(category: string): Promise<ProductSQL[]>
     findByPriceRange(minPrice: number, maxPrice: number): Promise<ProductSQL[]>
     deleteById(id: string): Promise<boolean>
+    updateProductStock(id: string, item: number): Promise<boolean>
 }

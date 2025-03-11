@@ -30,6 +30,9 @@ export default class ProductRepository implements ProductRepositoryPort {
         const products = await this.mySQLProduct.findByPriceRange(minPrice, maxPrice);
         return Promise.all(products.map((product) => this.getterProduct.get(product)));
     }
+    async updateProductStock(id: string, item: number): Promise<boolean> {
+        return await this.mySQLProduct.updateProductStock(id, item)
+    }
     update = (_id: string, _item: Partial<Product>) => {
         throw new Error("Method not implemented.")
     }

@@ -69,25 +69,40 @@ export default class ProductController implements ProductControllerExpressInterf
             res.status(500).json({ message: "Error deleting product", error });
         }
     }
-    async updateStock(_req: Request, res: Response): Promise<void> {
-        res.status(501).json({ message: "Method not implemented." });
-    }
-    async healthCheck(_req: Request, res: Response): Promise<void> {
-        res.status(200).json({
-            message: 'Product Health check active'
-        })
+    async updateStock(req: Request, res: Response): Promise<void> {
+        try {
+            const { id } = req.params
+            const { quantity } = req.body
+            if (id === null ||
+                id === undefined ||
+                quantity === undefined ||
+                quantity === 0 ||
+                quantity === null) {
+                res.status(404).json({ message: "Action not allowed" })
+                return;
+            }
+            const productUpdated = await this.productUseCase.updateStock(String(id), Number(quantity));
+            if (productUpdated) res.status(200).json(productUpdated);
+        } catch (error) {
+            res.status(500).json({ message: "Error deleting product", error });
+        }
     }
     async getImage(req: Request, res: Response): Promise<void> {
         const { filename } = req.params;
-        if(filename === undefined || filename === null) {
+        if (filename === undefined || filename === null) {
             res.status(400).json({ message: "Filename parameter is required" });
             return;
         }
         const image = this.productUseCase.getImage(filename)
-        if(image === "") {
+        if (image === "") {
             res.status(404).json({ message: "Image not found" });
             return;
         }
         res.sendFile(image);
     };
+    async healthCheck(_req: Request, res: Response): Promise<void> {
+        res.status(200).json({
+            message: 'Product Health check active'
+        })
+    }
 }
