@@ -9,14 +9,14 @@ body {
   h1,h2,h3 {
     color:#4CAF50;
   }
-  ul {
+  .nav ul {
     display: flex;
     flex-wrap: wrap;
     list-style-type: none;
     padding: 0;
     column-gap: 12px;
   }
-  ul li button {
+  .nav ul li button {
     width: 100%;
     box-sizing: border-box;
     margin: 0;
@@ -30,7 +30,7 @@ body {
     font-weight: bold; 
   }
   
-  ul li button:hover {
+  .nav ul li button:hover {
     background-color: black;
   }
   .body{
