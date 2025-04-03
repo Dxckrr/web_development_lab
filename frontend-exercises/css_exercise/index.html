@@ -10,49 +10,52 @@
 
 
 
-<body class="flex-col">
+<body>
   <header class="header rounded">
-    <h1 class="text-3xl margin-0">Welcome to the HTML to different stylesheets exercise!</h1>
-    <h3 class="text-xl margin-0">Use the menu to select different Stylesheets</h3>
+    <h1 class="main-title">Welcome to the HTML to different stylesheets exercise!</h1>
+    <h3 class="main-subtitle">Use the menu to select different Stylesheets</h3>
   </header>
   <div class="body">
-    <nav class="nav">
-      <ul>
-        <li><button class="text-lg rounded button-selected">Stylesheet 1</button></li>
-        <li><button class="text-lg rounded">Stylesheet 2</button></li>
-        <li><button class="text-lg rounded">Stylesheet 3</button></li>
-        <li><button class="text-lg rounded">Stylesheet 4</button></li>
-        <li><button class="text-lg rounded">No Stylesheet</button></li>
-      </ul>
-    </nav>
     <main class="content">
-      <div>
-        <h1 class="text-3xl">Same Page Different Stylesheets</h1>
-        <p class="text-lg">
-          This is a demonstration of how different stylesheets can change the
-          layout of your HTML page. You can change the layout of this page by
-          selecting different stylesheets in the menu, or by selecting one of
-          the following links:
-        </p>
+      <nav class="nav">
+        <ul>
+          <li><button class="button button-selected">Stylesheet 1</button></li>
+          <li><button class="button">Stylesheet 2</button></li>
+          <li><button class="button">Stylesheet 3</button></li>
+          <li><button class="button">Stylesheet 4</button></li>
+          <li><button class="button">No Stylesheet</button></li>
+        </ul>
+      </nav>
+      <section class="content-container">
+        <div>
+          <h1 class="content-title">Same Page Different Stylesheets</h1>
+          <p class="content-text">
+            This is a demonstration of how different stylesheets can change the
+            layout of your HTML page. You can change the layout of this page by
+            selecting different stylesheets in the menu, or by selecting one of
+            the following links:
+          </p>
 
-        <section>
-          <a href="#">Stylesheet 1</a>,
-          <a href="#">Stylesheet 2</a>,
-          <a href="#">Stylesheet 3</a>,
-          <a href="#">Stylesheet 4</a>
-        </section>
-      </div>
-      <div>
-        <h2 class="text-2xl">No styles</h2>
-        <p class="text-lg">
-          This page uses DIV elements to group different sections of the HTML
-          page. Click here to see how the page looks like with no stylesheet:
-        </p>
-        <a href="">No Stylesheet</a>
-      </div>
+          <section>
+            <a href="#">Stylesheet 1</a>,
+            <a href="#">Stylesheet 2</a>,
+            <a href="#">Stylesheet 3</a>,
+            <a href="#">Stylesheet 4</a>
+          </section>
+        </div>
+        <div>
+          <h2 class="content-subtitle">No styles</h2>
+          <p class="content-text">
+            This page uses DIV elements to group different sections of the HTML
+            page. Click here to see how the page looks like with no stylesheet:
+          </p>
+          <a href="">No Stylesheet</a>
+        </div>
+      </section>
+
 
     </main>
-    <aside class="aside rounded">
+    <aside class="aside">
       <h2>Side-Bar</h2>
       <p>
         Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam
@@ -63,7 +66,7 @@
   </div>
 
   <footer>
-    <p class="text-sm">
+    <p>
       Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam
       nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat
       volutpat. Ut wisi enim ad minim veniam, quis nostrud exerci tation
