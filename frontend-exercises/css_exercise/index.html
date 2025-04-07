@@ -4,7 +4,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <link rel="stylesheet" href="styles4.css" />
+  <link rel="stylesheet" id="styles" href="styles1.css" />
   <title>HTML to different stylesheets</title>
 </head>
 
@@ -19,11 +19,11 @@
     <main class="content">
       <nav class="nav">
         <ul>
-          <li><button class="button button-selected">Stylesheet 1</button></li>
-          <li><button class="button">Stylesheet 2</button></li>
-          <li><button class="button">Stylesheet 3</button></li>
-          <li><button class="button">Stylesheet 4</button></li>
-          <li><button class="button">No Stylesheet</button></li>
+          <li><button id="button1" class="button" onclick="setStyle(1)">Stylesheet 1</button></li>
+          <li><button id="button2" class="button" onclick="setStyle(2)">Stylesheet 2</button></li>
+          <li><button id="button3" class="button" onclick="setStyle(3)">Stylesheet 3</button></li>
+          <li><button id="button4" class="button" onclick="setStyle(4)">Stylesheet 4</button></li>
+          <li><button id="button5" class="button" onclick="setStyle(5)">No Stylesheet</button></li>
         </ul>
       </nav>
       <section class="content-container">
@@ -77,6 +77,28 @@
       zzril delenit augue duis dolore te feugait nulla facilisi.
     </p>
   </footer>
+  <script>
+    let lastButton = null;
+
+    function setStyle(i) {
+      styles = ["/styles1.css", "/styles2.css", "/styles3.css", "/styles4.css", "/nostyle.css"]
+      cssFile = "/styles1.css";
+      document.getElementById("styles").href = styles[i - 1];
+      setButton(i);
+    }
+    function setButton(i) {
+      let button = document.getElementById("button" + i);
+      lastButton.classList.remove("button-selected");
+
+      button.classList.toggle("button-selected");
+
+      lastButton = button;
+    }
+    window.onload = function () {
+      lastButton = document.getElementById("button1")
+      lastButton.classList.toggle("button-selected");
+    }
+  </script>
 </body>
 
 </html>
