@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Login</title>
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.4/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-DQvkBjpPgn7RC31MCQoOeC9TI2kdqa4+BSgNMNj8v77fdC77Kj5zpWFTJaaAoMbC"
+      crossorigin="anonymous"
+    />
+  </head>
+  <body
+    style="height: 100vh; background-color: rgba(0, 0, 0, 0.5)"
+    class="d-flex align-items-center bg-primary-subtle justify-content-center text-white"
+  >
+    <fieldset class="container mx-auto d-flex flex-column align-items-center">
+        <h1 class="fs-2 text-primary">Form-js-validation test!</h1>
+
+      <form class="bg-secondary p-4 rounded-2 d-flex gap-3">
+        <section class="d-flex flex-column">
+          <div class="mb-3">
+            <label for="name" class="form-label">Nombre</label>
+            <input type="text" class="form-control" id="name" />
+            <p id="name_err" class="d-none text-danger">Err</p>
+          </div>
+          <div class="mb-3">
+            <label for="surname" class="form-label">Apellido</label>
+            <input type="text" class="form-control" id="surname" />
+            <p class="d-none">Err</p>
+          </div>
+          <div class="mb-3">
+            <label for="id_number" class="form-label">C.C</label>
+            <input type="number" class="form-control" id="id_number" />
+            <p id="id_number_err" class="d-none text-danger">Err</p>
+          </div>
+          <div class="mb-3">
+            <label for="address" class="form-label">Dirección</label>
+            <input type="text" class="form-control" id="address" />
+            <p id="address_err" class="d-none text-danger">Err</p>
+          </div>
+        </section>
+        <section class="d-flex flex-column">
+            <div class="mb-3">
+                <label for="phone" class="form-label">Celular</label>
+                <input type="text" class="form-control" id="phone" />
+                <p id="phone_err" class="d-none text-danger">Err</p>
+              </div>
+              <div class="mb-3">
+                <!-- pattern xxx-xxx-xx-xx -->
+                <label for="email" class="form-label">Email</label>
+                <input type="email" class="form-control" id="email" />
+                <p id="email_err" class="d-none text-danger">Err</p>
+              </div>
+              <div class="mb-3">
+                <label for="password" class="form-label">Password</label>
+                <input type="password" class="form-control" id="password" />
+                <p id="password_err" class="d-none text-danger">Err</p>
+              </div>
+        </section>
+
+        <button type="submit" class="btn btn-primary">Submit</button>
+      </form>
+    </fieldset>
+
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.4/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-YUe2LzesAfftltw+PEaao2tjU/QATaW/rOitAq67e0CT0Zi2VVRL0oC4+gAaeBKu"
+      crossorigin="anonymous"
+    ></script>
+    <script src="./index.js"></script>
+  </body>
+</html>
