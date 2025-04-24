@@ -46,10 +46,10 @@ export default class IndexView {
   readonly createMovies = () => {
     this.movies.init();
     const moviesHTML = this.movies.getMoviesHTML();
-    // const paginatorHTML = this.movies.getPaginatorHTML();
+    const paginatorHTML = this.movies.getPaginatorHTML();
     const mainDiv = document.querySelector("main") as HTMLElement;
     mainDiv.appendChild(moviesHTML);
-    // mainDiv.appendChild(paginatorHTML);
+    mainDiv.appendChild(paginatorHTML);
   };
   readonly render = () => {};
 }

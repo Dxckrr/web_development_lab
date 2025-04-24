@@ -23,5 +23,8 @@ export default class Movies {
   readonly getMoviesHTML = (): HTMLElement => {
     return this.MoviesView.getMoviesHTML()
   }
+  readonly getPaginatorHTML = (): HTMLElement => {
+    return this.MoviesView.getPaginatorHTML()
+  }
   
 }

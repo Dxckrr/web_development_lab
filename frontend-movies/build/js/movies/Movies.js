@@ -16,4 +16,7 @@ export default class Movies {
     getMoviesHTML = () => {
         return this.MoviesView.getMoviesHTML();
     };
+    getPaginatorHTML = () => {
+        return this.MoviesView.getPaginatorHTML();
+    };
 }

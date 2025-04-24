@@ -46,6 +46,15 @@ export default class MoviesTemplate {
         }
         return `${path}not-icon.png`;
     };
+    renderPaginationButtons = async (currentPage, totalPages) => {
+        return `
+      <div class="pagination">
+        <button id="prev-button"><span>&larr;</span></button>
+        <span class="page-info">${currentPage} / ${totalPages}</span>
+        <button id="next-button"><span>&rarr;</span></button>
+      </div>
+    `;
+    };
     formatToMoney = (value) => {
         const formatter = new Intl.NumberFormat('en-US', {
             style: 'currency',

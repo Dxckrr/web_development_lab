@@ -49,6 +49,15 @@ export default class MoviesTemplate {
     }
     return `${path}not-icon.png`
   }
+  readonly renderPaginationButtons = async (currentPage: number, totalPages: number): Promise<string> => {
+    return `
+      <div class="pagination">
+        <button id="prev-button"><span>&larr;</span></button>
+        <span class="page-info">${currentPage} / ${totalPages}</span>
+        <button id="next-button"><span>&rarr;</span></button>
+      </div>
+    `
+}
 
   private readonly formatToMoney = (value: number): string => {
     const formatter = new Intl.NumberFormat('en-US', {
