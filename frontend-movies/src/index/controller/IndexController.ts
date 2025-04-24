@@ -7,10 +7,11 @@ export default class IndexController {
     private readonly view: IndexView
   ) {}
 
-  readonly init = (elements: HTMLElement[]) => {
+  readonly init = () => {
     console.log('IndexController initialized')
     this.model.init()
-    this.view.init(elements)
+    //
+    this.view.init()
     this.view.render()
   }
 }

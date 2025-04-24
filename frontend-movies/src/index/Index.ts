@@ -13,7 +13,7 @@ export default class Index {
     this.IndexController = new IndexController(this.IndexModel, this.IndexView)
   }
 
-  readonly init = (elements: HTMLElement[]) => {
-    this.IndexController.init(elements)
+  readonly init = () => {
+    this.IndexController.init()
   }
 }
