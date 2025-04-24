@@ -6,7 +6,6 @@ export default class Navbar {
   private readonly model: NavbarModel
   private readonly view: NavbarView
   private readonly controller: NavbarController
-
   constructor() {
     this.model = new NavbarModel()
     this.view = new NavbarView()
@@ -20,5 +19,10 @@ export default class Navbar {
   readonly getNavbarHTML = (): HTMLElement => {
     return this.view.getNavbarHTML()
   }
-}
 
+  readonly onSectionChange = (callback: (section: string) => void): void => {
+    this.view.onSectionChange(callback)
+  }
+
+
+}

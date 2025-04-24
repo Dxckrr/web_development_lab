@@ -14,4 +14,3 @@ export default class NavbarController {
     this.view.render()
   }
 }
-
