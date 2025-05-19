@@ -1,0 +1,13 @@
+@import url('products.css');
+@import url('index.css');
+
+:root {
+  --dark-green: #006414;
+  --r-green: #019729;
+  --light-green: #5bcb5f;
+  --red1: #e80729;
+  --red2: #ef294a;
+
+  --orange1: #eca229;
+  --orange2: #f3b44b;
+}

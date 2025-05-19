@@ -1,0 +1,25 @@
+.navbar {
+    i {
+        color: var(--light-green)
+    }
+    img {
+        max-height: 50px;
+    }
+    color: black;
+    text-align: center;
+    text-align: left;
+    font-size: 16px;
+    padding-block: 5px;
+    padding-right: 15px;
+    padding-left: 15px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    padding-block: 0.5rem;
+}
+.searchbar {
+    border: 1px solid var(--light-green);
+    border-radius: 100px;
+}
+
+main {
+    margin-top: 2rem;
+}
