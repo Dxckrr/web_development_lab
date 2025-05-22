@@ -24,6 +24,10 @@ export default class CartView extends Observer<CartModel> {
         this.cartHTML.classList.add("w-100");
         return this.cartHTML;
     }
+    private async deleteItemCart(productId: string): Promise<void> {
+        const cartModel = this.subject as CartModel;
+        await cartModel.deleteItem(productId); // Este método debe estar en tu modelo
+    }
 
     readonly render = async (): Promise<void> => {
         const cartModel = (this.subject as CartModel);
@@ -49,7 +53,7 @@ export default class CartView extends Observer<CartModel> {
                 const productId = button.dataset['id'];
                 if (productId) {
                     try {
-                        await this.deleteItem(productId);
+                        await this.deleteItemCart(productId);
                         this.update();
                     } catch (err) {
                         console.error("Error al eliminar el producto:", err);
@@ -61,28 +65,4 @@ export default class CartView extends Observer<CartModel> {
 
         );
     }
-
-    readonly deleteItem = async (productId: string): Promise<void> => {
-        const userId = localStorage.getItem('authToken');
-
-        if (!userId) {
-            console.error("No se encontró el authToken en localStorage");
-            return;
-        }
-
-        const response = await fetch(`http://localhost:1802/cart/delete/item/${userId}`, {
-            method: 'DELETE',
-            headers: {
-                'Content-Type': 'application/json'
-            },
-            body: JSON.stringify({ product_id: productId }),
-            credentials: 'include'
-        });
-
-        if (!response.ok) {
-            throw new Error(`Error en el fetch: ${response.statusText}`);
-        }
-    }
-
-
 }
