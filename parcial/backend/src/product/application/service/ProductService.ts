@@ -30,7 +30,7 @@ export default class ProductService implements ProductServicePort {
             return [new NullProduct()]
         }
         if (name.length < 3) {
-            return Promise.resolve([]);
+            return [new NullProduct()]
         }
         const products = await this.productRepository.getByName(name);
         if (products.length === 0) {

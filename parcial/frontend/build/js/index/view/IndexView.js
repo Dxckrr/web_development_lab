@@ -60,7 +60,6 @@ export default class IndexView {
         setTimeout(() => {
             const goToCartBtn = document.getElementById('go-to-cart-btn');
             goToCartBtn.addEventListener('click', () => {
-                console.log("??");
                 this.renderCart();
                 const cartDropdown = document.getElementById("dropdown-cart-menu");
                 cartDropdown.classList.add("hidden");

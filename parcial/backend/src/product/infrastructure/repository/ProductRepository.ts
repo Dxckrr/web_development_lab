@@ -28,7 +28,6 @@ export default class ProductRepository implements ProductRepositoryPort {
     }
     async getByName(name: string): Promise<Product[]> {
         const products = await this.mySQLProduct.findByName(name);
-        console.log(products)
         return Promise.all(products.map((product) => this.getterProduct.get(product)));
     }
     async getByPriceRange(minPrice: number, maxPrice: number): Promise<Product[]> {

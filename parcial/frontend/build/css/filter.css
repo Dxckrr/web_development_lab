@@ -13,6 +13,7 @@ filter {
 filter #filterButton {
   color: white;
   background-color: var(--light-green);
+  border-radius: 999px;
 }
 filter #filterButton:hover {
   background-color: var(--dark-green);
@@ -27,6 +28,11 @@ filter input[type="range"]::-webkit-slider-thumb {
   cursor: pointer;
   border: 2px solid white;
   box-shadow: 0 0 2px rgba(0, 0, 0, 0.5);
+}
+
+filter .filter-button {
+  background: rgba(0, 0, 0, 0.1); /* Negro al 80% de opacidad */
+;
 }
 @media (max-width: 991.98px) {
   .fixed-filter {
