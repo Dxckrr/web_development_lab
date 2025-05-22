@@ -16,11 +16,11 @@ export default class ProductsTemplate {
               <p>- 50%<br>2°und.</p>
             </div> -->
             <a href="" class="text-decoration-none" id="view-product-${product.id}">
-              <img class="w-100" src="${await this.getImage(product.id + ".jpg")}">
+              <img class="w-100" src="${await this.getImage(product.id + ".jpg")}" alt="${product.name}">
               <h5 class="title">${product.name}</h5>
             </a>
-            <p class="units">${product.units}</p>
-            <p class="brand">${product.brand}</p>
+            <p class="units">${product.stock}</p>
+            <p class="brand">${product.category.name}</p>
             <p class="price">${this.formatToMoney(product.price)}</p>
 
             <div>
@@ -54,7 +54,7 @@ export default class ProductsTemplate {
                       <i class="bi-heart-fill"></i>
                     </div>
                     <h2 class="modal-title">${product.name}</h2>
-                    <h4 class="text-secondary">${product.units}</h4>
+                    <h4 class="text-secondary">${product.stock}</h4>
                     <h3>${this.formatToMoney(product.price)}</h3>
                     <p>Sale a: 0,26 €/ud</p>
                   </section>

@@ -1,14 +1,15 @@
 import NullDiscount from "../discount/NullDiscount.js";
+import NullCategory from "./category/NullCategory.js";
+import NullImage from "./image/NullImage.js";
 export default {
     id: "",
     name: "",
     description: "",
     price: 0,
-    image: "not-icon.png",
-    category: "",
+    category: NullCategory,
     discount: NullDiscount,
-    brand: "",
-    units: "",
+    stock: 0,
+    image: NullImage,
     // ??
     // unit: number;
 };

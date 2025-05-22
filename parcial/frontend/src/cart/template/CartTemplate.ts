@@ -16,8 +16,8 @@ export default class NavbarTemplate {
                         <div class="col-5">
                             <div class="product-details">
                                 <div class="product-title">${product.name}</div>
-                                <div class="product-meta">Talla: ${product.units}</div>
-                                <div class="product-meta">Marca: ${product.brand}</div>
+                                <div class="product-meta">Talla: ${product.stock}</div>
+                                <div class="product-meta">Marca: ${product.category.description}</div>
                             </div>
                         </div>
                         <div class="col-2">

@@ -21,7 +21,7 @@ export default class ProductsTemplate {
                                         <i class="bi-heart-fill"></i>
                                     </div>
                                 </div>
-                                <h4 class="text-secondary">${product.units}</h4>
+                                <h4 class="text-secondary">${product.stock}</h4>
                                 <h3>${this.formatToMoney(product.price)}</h3>
                                 <p>Sale a: 0,26 €/ud</p>
                             </section>
