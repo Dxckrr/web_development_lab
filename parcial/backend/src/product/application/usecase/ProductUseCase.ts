@@ -10,6 +10,9 @@ export default class ProductUseCase implements ProductUseCasePort {
     async getProductById(productId: string): Promise<Product> {
         return await this.productService.getProductById(productId)
     }
+    async getProductsByName(name: string): Promise<Product[]> {
+        return await this.productService.getProductsByName(name)
+    }
     async getProductsByCategoryId(categoryId: string): Promise<Product[]> {
         return await this.productService.getProductsByCategory(categoryId)
     }

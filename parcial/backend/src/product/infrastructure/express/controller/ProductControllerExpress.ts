@@ -21,6 +21,15 @@ export default class ProductController implements ProductControllerExpressInterf
             res.status(500).json({ message: "Error getting product", error });
         }
     }
+    async getByName(req: Request, res: Response): Promise<void> {
+        try {
+            const { q } = req.query
+            const product = await this.productUseCase.getProductsByName(String(q));
+            res.status(200).json(product);
+        } catch (error) {
+            res.status(500).json({ message: "Error getting product", error });
+        }
+    }
 
     async getByCategoryId(req: Request, res: Response): Promise<void> {
         try {

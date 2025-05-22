@@ -49,12 +49,10 @@ export default class ProductModel extends Subject<ProductsView> {
         },
         credentials: 'include'
       });
-      console.log('Data cargada:', response)
       if (!response.ok) {
         throw new Error(`Error en el fetch: ${response.statusText}`);
       }
       const products = await response.json();
-      console.log('Data cargada:', products);
       this.productsData = products;
       return this.productsData
     } catch (error) {
@@ -62,6 +60,37 @@ export default class ProductModel extends Subject<ProductsView> {
       this.productsData = [];
       return this.productsData;
     }
+  }
+  readonly searchProducts = async (search: string): Promise<void> => {
+    console.log('VitrinasModel.searchVitrinas()')
+    this.searchTerm = search;
+    this.priceFilter = null;
+
+    if (search.trim().length === 0) {
+      this.filteredProducts = await this.loadData()
+    } else {
+      try {
+        const response = await fetch(`https://localhost:1803/productos/v1.0/productos/busqueda/${search}`, {
+          method: 'GET',
+          headers: {
+            'Content-Type': 'application/json'
+          }
+        });
+
+        if (!response.ok) {
+          throw new Error(`Error en la búsqueda: ${response.statusText}`);
+        }
+
+        const { searchResults } = await response.json();
+
+        this.filteredProducts = Array.isArray(searchResults) ? searchResults : [searchResults];
+
+      } catch (error) {
+        console.error('Error en búsqueda de vitrinas:', error);
+        this.filteredProducts = [];
+      }
+    }
+    this.notifyALL();
   }
 
   readonly filterProducts = async (minPrice: number, maxPrice: number): Promise<void> => {

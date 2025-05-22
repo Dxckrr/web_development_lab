@@ -26,5 +26,8 @@ export default class Products {
   readonly filterProducts = (minPrice: number, maxPrice: number): Promise<void> => {
     return this.ProductsModel.filterProducts(minPrice, maxPrice);
   }
+  readonly searchProducts = async (search: string): Promise<void> => {
+    await this.ProductsModel.searchProducts(search)
+  }
 
 }

@@ -19,4 +19,7 @@ export default class Products {
     filterProducts = (minPrice, maxPrice) => {
         return this.ProductsModel.filterProducts(minPrice, maxPrice);
     };
+    searchProducts = async (search) => {
+        await this.ProductsModel.searchProducts(search);
+    };
 }

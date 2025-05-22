@@ -3,6 +3,7 @@ import Product from "../../../product/Product";
 export default interface ProductServicePort {
     getProducts(): Promise<Product[]>;
     getProductById(productId: string): Promise<Product>;
+    getProductsByName(productName: string): Promise<Product[]>;
     addProduct(product: Product): Promise<Product>;
     updateProduct(product: Product): Promise<void>;
     deleteProduct(productId: string): Promise<boolean>;

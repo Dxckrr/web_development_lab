@@ -25,6 +25,19 @@ export default class ProductService implements ProductServicePort {
         }
         return product
     }
+    async getProductsByName(name: string): Promise<Product[]> {
+        if (name === undefined || name === null) {
+            return [new NullProduct()]
+        }
+        if (name.length < 3) {
+            return Promise.resolve([]);
+        }
+        const products = await this.productRepository.getByName(name);
+        if (products.length === 0) {
+            return [new NullProduct()]
+        }
+        return products;
+    }
     async getProductsByCategory(categoryId: string): Promise<Product[]> {
         if (categoryId === undefined || categoryId === null) {
             return [new NullProduct()]

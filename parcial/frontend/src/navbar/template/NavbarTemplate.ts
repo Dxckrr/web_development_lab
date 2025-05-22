@@ -4,7 +4,7 @@ export default class navbarTemplate {
         <nav class="navbar">
             <div class="d-flex align-items-center justify-content-between container">
                 <div class="me-5">
-                    <img src="./img/logo.jpg" alt="Logo BuenaVida">
+                    <img src="./img/logo.jpg" alt="Logo BuenaVida" onclick="location.reload()" style="cursor: pointer;">
                 </div>
 
                 <!-- Searchbar -->

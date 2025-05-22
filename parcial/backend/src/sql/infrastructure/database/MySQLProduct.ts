@@ -12,6 +12,10 @@ export default class MySQLProduct implements MySQLProductInterface {
         const res = await MySQLDatabase.executeQuery(query, [id]);
         return res[0];
     }
+    async findByName(name: string): Promise<ProductSQL[]> {
+        const query = 'SELECT * FROM buenavidaparcial.products WHERE name LIKE ?;';
+        return await MySQLDatabase.executeQuery(query, [`%${name}%`]);
+    }
     async findByCategoryId(category: string): Promise<ProductSQL[]> {
         const query = 'SELECT * FROM buenavidaparcial.products WHERE category_id =?;';
         return await MySQLDatabase.executeQuery(query, [category]);
