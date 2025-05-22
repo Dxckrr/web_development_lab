@@ -10,9 +10,9 @@ export default class navbarTemplate {
                 <!-- Searchbar -->
                 <div class="flex-grow-1">
                     <div class="input-group searchbar">
-                        <input type="text" class="form-control border-0 bg-transparent" placeholder="¿Qué producto estás buscando…?">
+                        <input id="searchInput" type="text" class="form-control border-0 bg-transparent" placeholder="¿Qué producto estás buscando…?">
 
-                        <span class="input-group-text bg-white border-0 bg-transparent">
+                        <span id="searchBtn" class="input-group-text bg-white border-0 bg-transparent">
                             <i class="bi-search"></i>
                         </span>
                     </div>

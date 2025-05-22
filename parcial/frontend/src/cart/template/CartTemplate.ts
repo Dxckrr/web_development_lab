@@ -101,6 +101,6 @@ export default class NavbarTemplate {
         } catch (err) {
             console.error("Error fetching image:", err);
         }
-        return `${path}not-icon.png`;
+        return `${path}not-icon.jpg`;
     }
 }

@@ -63,7 +63,7 @@ export default class ProductsTemplate {
     if (response.ok) {
       return imagePath
     }
-    return `${path}not-icon.png`
+    return `${path}not-icon.jpg`
   }
 
   private readonly formatToMoney = (value: number): string => {

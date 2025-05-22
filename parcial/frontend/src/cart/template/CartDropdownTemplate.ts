@@ -73,7 +73,7 @@ export default class CartDropdownTemplate {
         } catch (err) {
             console.error("Error fetching image:", err);
         }
-        return `${path}not-icon.png`;
+        return `${path}not-icon.jpg`;
     }
 
     private readonly formatToMoney = (value: number): string => {

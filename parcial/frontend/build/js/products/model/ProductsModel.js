@@ -52,7 +52,6 @@ export default class ProductModel extends Subject {
         }
     };
     searchProducts = async (search) => {
-        console.log('VitrinasModel.searchVitrinas()');
         this.searchTerm = search;
         this.priceFilter = null;
         if (search.trim().length === 0) {
@@ -60,7 +59,7 @@ export default class ProductModel extends Subject {
         }
         else {
             try {
-                const response = await fetch(`https://localhost:1803/productos/v1.0/productos/busqueda/${search}`, {
+                const response = await fetch(`http://localhost:1802/products/product/search?q=${search}`, {
                     method: 'GET',
                     headers: {
                         'Content-Type': 'application/json'
@@ -69,18 +68,17 @@ export default class ProductModel extends Subject {
                 if (!response.ok) {
                     throw new Error(`Error en la búsqueda: ${response.statusText}`);
                 }
-                const { searchResults } = await response.json();
-                this.filteredProducts = Array.isArray(searchResults) ? searchResults : [searchResults];
+                const searchProducts = await response.json();
+                this.filteredProducts = searchProducts;
             }
             catch (error) {
-                console.error('Error en búsqueda de vitrinas:', error);
+                console.error('Err searching products:', error);
                 this.filteredProducts = [];
             }
         }
         this.notifyALL();
     };
     filterProducts = async (minPrice, maxPrice) => {
-        console.log('VitrinasModel.filter()');
         this.searchTerm = '';
         this.priceFilter = (minPrice === 0 && maxPrice === 0) ? null : { min: minPrice, max: maxPrice };
         if (minPrice === 0 && maxPrice === 0) {
@@ -97,7 +95,7 @@ export default class ProductModel extends Subject {
                 this.filteredProducts = filterProducts;
             }
             catch (error) {
-                console.error('Error al filtrar vitrinas:', error);
+                console.error('Err filtering products:', error);
                 this.filteredProducts = [];
             }
         }

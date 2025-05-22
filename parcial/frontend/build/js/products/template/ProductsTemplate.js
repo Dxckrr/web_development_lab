@@ -92,7 +92,7 @@ export default class ProductsTemplate {
         if (response.ok) {
             return imagePath;
         }
-        return `${path}not-icon.png`;
+        return `${path}not-icon.jpg`;
     };
     formatToMoney = (value) => {
         const formatter = new Intl.NumberFormat('es-ES', {

@@ -62,7 +62,6 @@ export default class ProductModel extends Subject<ProductsView> {
     }
   }
   readonly searchProducts = async (search: string): Promise<void> => {
-    console.log('VitrinasModel.searchVitrinas()')
     this.searchTerm = search;
     this.priceFilter = null;
 
@@ -70,7 +69,7 @@ export default class ProductModel extends Subject<ProductsView> {
       this.filteredProducts = await this.loadData()
     } else {
       try {
-        const response = await fetch(`https://localhost:1803/productos/v1.0/productos/busqueda/${search}`, {
+        const response = await fetch(`http://localhost:1802/products/product/search?q=${search}`, {
           method: 'GET',
           headers: {
             'Content-Type': 'application/json'
@@ -81,12 +80,12 @@ export default class ProductModel extends Subject<ProductsView> {
           throw new Error(`Error en la búsqueda: ${response.statusText}`);
         }
 
-        const { searchResults } = await response.json();
+        const searchProducts = await response.json();
 
-        this.filteredProducts = Array.isArray(searchResults) ? searchResults : [searchResults];
+        this.filteredProducts = searchProducts;
 
       } catch (error) {
-        console.error('Error en búsqueda de vitrinas:', error);
+        console.error('Err searching products:', error);
         this.filteredProducts = [];
       }
     }
@@ -94,7 +93,6 @@ export default class ProductModel extends Subject<ProductsView> {
   }
 
   readonly filterProducts = async (minPrice: number, maxPrice: number): Promise<void> => {
-    console.log('VitrinasModel.filter()')
     this.searchTerm = '';
     this.priceFilter = (minPrice === 0 && maxPrice === 0) ? null : { min: minPrice, max: maxPrice };
 
@@ -110,7 +108,7 @@ export default class ProductModel extends Subject<ProductsView> {
         const filterProducts = await response.json();
         this.filteredProducts = filterProducts;
       } catch (error) {
-        console.error('Error al filtrar vitrinas:', error);
+        console.error('Err filtering products:', error);
         this.filteredProducts = [];
       }
     }

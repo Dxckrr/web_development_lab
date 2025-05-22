@@ -33,18 +33,22 @@ export default class IndexView {
         const navbarHTML = this.navbar.getNavbarHTML();
         const div = document.querySelector("header");
         div.appendChild(navbarHTML);
-        //
-        // const cartButton = document.getElementById('cart') as HTMLElement;
-        // cartButton.addEventListener('click', () => {
-        //   this.renderCart();
-        // });
+        this.assembleSearchbar();
     };
-    // readonly createSearchbar = () => {
-    //   this.searchbar.init();
-    //   const searchbarHTML = this.searchbar.getSearchbatHTML();
-    //   const div = document.querySelector('.nav-btn-right') as HTMLElement;
-    //   div.appendChild(searchbarHTML);
-    // }
+    assembleSearchbar = () => {
+        setTimeout(() => {
+            const input = document.getElementById('searchInput');
+            const searchBtn = document.getElementById('searchBtn');
+            input.addEventListener('keydown', (e) => {
+                if (e.key === 'Enter') {
+                    this.products.searchProducts(input.value);
+                }
+            });
+            searchBtn.addEventListener('click', () => {
+                this.products.searchProducts(input.value);
+            });
+        }, 1);
+    };
     createProducts = () => {
         this.products.init();
         const productsHTML = this.products.getProductsHTML();
