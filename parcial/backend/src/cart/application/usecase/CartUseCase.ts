@@ -19,9 +19,9 @@ export default class CartUseCase implements CartUseCasePort {
         // Implementation here
         return 0;
     };
-    async deleteItemFromCart(_id: string, _product_id: string): Promise<Cart> {
-        // Implementation here
-        return new NullCart();
+    async deleteItemFromCart(id: string, product_id: string): Promise<Cart> {
+        return await this.cartService.deleteItemFromCart(id, product_id)
+
     };
     deleteCart: (id: string) => Promise<boolean> = async (_id: string) => {
         // Implementation here

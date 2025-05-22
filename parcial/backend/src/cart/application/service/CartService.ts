@@ -25,9 +25,11 @@ export default class CartService implements CartServicePort {
         // Implementation here
         return 0;
     };
-    async deleteItemFromCart(_id: string, _product_id: string): Promise<Cart> {
-        // Implementation here
-        return new NullCart();
+    async deleteItemFromCart(id: string, product_id: string): Promise<Cart> {
+        if (id === null || product_id === null || id === undefined || product_id === undefined) {
+            return new NullCart();
+        }
+        return await this.cartRepository.deleteItemFromCart(id, product_id);
     };
     deleteCart: (id: string) => Promise<boolean> = async (_id: string) => {
         // Implementation here

@@ -17,7 +17,7 @@ export default class ProductRouterExpress implements ProductRouterExpressInterfa
     this.getHealthRoutes()
   }
   public getCartRoutes(): void {
-    this.router.post('/add', this.controller.addItemToCart.bind(this.controller))
+    this.router.post('/add/item', this.controller.addItemToCart.bind(this.controller))
     // this.router.post('/create', this.controller.createCart.bind(this.controller))
     // this.router.get('/total', this.controller.getCartTotal.bind(this.controller))
     this.router.get('/:id', this.controller.getCartById.bind(this.controller))

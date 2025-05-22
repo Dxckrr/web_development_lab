@@ -34,6 +34,7 @@ export default class MySQLCart implements MySQLCartInterface {
         return this.findById(id);
     }
     async deleteItemFromCart(id: string, product_id: string): Promise<CartSQL> {
+        console.log(id, product_id);
         const query = `DELETE FROM cart_items WHERE cart_id = ? AND product_id = ?`;
         await MySQLDatabase.executeQuery(query, [id, product_id]);
         return this.findById(id);
