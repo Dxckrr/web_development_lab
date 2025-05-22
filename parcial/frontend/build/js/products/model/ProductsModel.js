@@ -21,7 +21,7 @@ export default class ProductModel extends Subject {
         this.productsData = await this.loadData();
         this.filteredProducts = this.productsData;
         this.notifyALL();
-        console.log(this.searchTerm, this.priceFilter);
+        this.searchTerm, this.priceFilter;
     };
     getMoviesData = () => {
         return this.filteredProducts.slice((this.currentPage - 1) * this.gridSize, this.currentPage * this.gridSize);

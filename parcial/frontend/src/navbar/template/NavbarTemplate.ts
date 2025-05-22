@@ -24,7 +24,7 @@ export default class navbarTemplate {
                         <i class="bi bi-heart fs-5"></i><br>
                         <span>Mis Favoritos</span>
                     </div>
-                    <div class="text-center">
+                    <div id="login" class="text-center">
                         <i class="bi bi-person-circle fs-5"></i><br>
                         <span>Mi Cuenta</span>
                     </div>

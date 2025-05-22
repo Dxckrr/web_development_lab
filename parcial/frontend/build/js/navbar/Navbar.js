@@ -18,4 +18,10 @@ export default class Navbar {
     getNavbarHTML = () => {
         return this.view.getNavbarHTML();
     };
+    setloginModal = (element) => {
+        return this.controller.setloginModalHTML(element);
+    };
+    setregisterModal = (element) => {
+        return this.controller.setregisterModalHTML(element);
+    };
 }

@@ -10,4 +10,10 @@ export default class NavbarController {
         this.view.init();
         console.log("NavbarController initialized");
     };
+    setloginModalHTML = (html) => {
+        this.view.setLoginElement(html);
+    };
+    setregisterModalHTML = (html) => {
+        this.view.setRegisterElement(html);
+    };
 }

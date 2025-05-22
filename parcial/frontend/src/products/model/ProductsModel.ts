@@ -26,7 +26,7 @@ export default class ProductModel extends Subject<ProductsView> {
     this.productsData = await this.loadData()
     this.filteredProducts = this.productsData
     this.notifyALL()
-    console.log(this.searchTerm, this.priceFilter)
+    this.searchTerm, this.priceFilter
   }
 
   readonly getMoviesData = () => {

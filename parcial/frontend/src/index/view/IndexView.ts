@@ -2,6 +2,7 @@ import Products from "../../products/Products.js"
 import Navbar from "../../navbar/Navbar.js"
 import Cart from "../../cart/Cart.js";
 import Filter from "../../filter/Filter.js";
+import Login from "../../auth/login/Login.js";
 
 export default class IndexView {
   private readonly main: HTMLElement;
@@ -9,6 +10,7 @@ export default class IndexView {
   private readonly products: Products;
   private readonly cart: Cart;
   private readonly filter: Filter;
+  private readonly login: Login;
   constructor() {
     const main = document.querySelector('main-container') as HTMLElement
     if (!main) {
@@ -20,16 +22,16 @@ export default class IndexView {
     this.filter = new Filter('filter', (min: number, max: number) => this.products.filterProducts(min, max))
     this.cart = new Cart('cart');
     this.navbar = new Navbar('navbar', async () => await this.cart.renderCartDropDownHTML());
-    // this.searchbar = new Searchbar('searchbar', async (search: string) => await this.products.searchMovies(search))
+    this.login = new Login('login');
   }
 
   readonly init = () => {
     console.log('IndexView initialized')
-    this.createNavbar();
+    this.createAuth();
     this.createProducts();
     this.createCart();
     this.createFilter();
-    // this.createSearchbar();
+    this.createNavbar();
   }
 
   readonly createNavbar = () => {
@@ -38,7 +40,11 @@ export default class IndexView {
     const div = document.querySelector("header") as HTMLElement;
     div.appendChild(navbarHTML);
     this.assembleSearchbar();
+    const loginModal = this.login.getLoginHTML()
+    this.navbar.setloginModal(loginModal)
 
+    // const registerModal = this.register.getRegisterHTML()
+    // this.navbar.setregisterModal(registerModal)
   }
   readonly assembleSearchbar = () => {
     setTimeout(() => {
@@ -86,6 +92,9 @@ export default class IndexView {
     mainDiv.appendChild(cartHTML);
     this.main.innerHTML = "";
     this.main.appendChild(this.cart.getCartHTML())
+  }
+  readonly createAuth = () => {
+    this.login.init();
   }
   readonly createFilter = () => {
     this.filter.init()

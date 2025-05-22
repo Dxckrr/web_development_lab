@@ -20,4 +20,10 @@ export default class Navbar {
     readonly getNavbarHTML = (): HTMLElement => {
         return this.view.getNavbarHTML();
     }
+    readonly setloginModal = (element: HTMLElement): void => {
+        return this.controller.setloginModalHTML(element)
+    }
+    readonly setregisterModal = (element: HTMLElement): void => {
+        return this.controller.setregisterModalHTML(element)
+    }
 }

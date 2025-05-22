@@ -1,0 +1,257 @@
+.login_modal_backdrop {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.5);
+  display: none;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+  opacity: 0;
+  transition: opacity 0.15s ease;
+}
+
+.login_modal_backdrop.active {
+  display: flex;
+  opacity: 1;
+}
+
+.login_modal_container {
+  background-color: white;
+  padding: 30px;
+  border-radius: 8px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  width: 100%;
+  max-width: 380px;
+  transform: scale(0.95);
+  transition: transform 0.15s ease;
+}
+
+.login_modal_backdrop.active .login_modal_container {
+  transform: scale(1);
+}
+
+/* ===== MODAL HEADER ===== */
+.login_modal_header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+.login_modal_title {
+  font-size: 1.5rem;
+  font-weight: 600;
+  color: black;
+  margin: 0;
+  padding: 0;
+}
+
+.login_modal_close_btn {
+  background: none;
+  border: none;
+  font-size: 1.2rem;
+  cursor: pointer;
+  color: #6b7280;
+  padding: 2px 5px;
+  transition: all 0.15s;
+}
+
+.login_modal_close_btn:hover {
+  color: #e80729;
+}
+
+.login_input_group {
+  margin-bottom: 16px;
+  position: relative;
+}
+
+.login_input_icon {
+  position: absolute;
+  top: 50%;
+  left: 12px;
+  transform: translateY(-50%);
+  color: #9ca3af;
+}
+
+.login_form_input {
+  width: 100%;
+  padding: 10px 10px 10px 40px;
+  border: 1px solid #d1d5db;
+  border-radius: 4px;
+  font-size: 16px;
+  box-sizing: border-box;
+  transition: all 0.15s;
+}
+
+.login_form_input:focus {
+  outline: none;
+  border-color: #009929;
+  box-shadow: 0 0 0 2px rgba(0, 153, 41, 0.2);
+}
+
+/* ===== FORM ACTIONS ===== */
+.login_forgot_password {
+  text-align: right;
+  margin-bottom: 16px;
+}
+
+.login_forgot_password a {
+  color: #006414;
+  font-size: 14px;
+  font-weight: bold;
+  text-decoration: none;
+  transition: color 0.15s;
+}
+
+.login_forgot_password a:hover {
+  color: #009929;
+}
+
+.login_button_group {
+  display: flex;
+  justify-content: space-between;
+  gap: 10px;
+}
+
+/* ===== BUTTONS ===== */
+.login_primary_btn {
+  padding: 10px 20px;
+  border: none;
+  border-radius: 9999px;
+  font-weight: bold;
+  cursor: pointer;
+  font-size: 14px;
+  background-color: #006414;
+  color: white;
+  transition: background-color 0.15s;
+  flex-grow: 1;
+  position: relative;
+}
+
+.login_primary_btn:hover {
+  background-color: #009929;
+}
+
+.login_primary_btn .btn_text {
+  display: inline-block;
+}
+
+.login_primary_btn .btn_loading {
+  display: none;
+}
+
+.login_primary_btn.loading {
+  pointer-events: none;
+}
+
+.login_primary_btn.loading .btn_text {
+  display: none;
+}
+
+.login_primary_btn.loading .btn_loading {
+  display: inline-block;
+}
+
+.login_secondary_btn {
+  padding: 10px 20px;
+  border: none;
+  border-radius: 9999px;
+  font-weight: bold;
+  cursor: pointer;
+  font-size: 14px;
+  background-color: #e80729;
+  color: white;
+  transition: background-color 0.15s;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 5px;
+  flex-grow: 1;
+}
+
+.login_secondary_btn:hover {
+  background-color: #ef2947;
+}
+
+.login_trigger_btn {
+  padding: 8px 16px;
+  background-color: #006414;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-weight: 600;
+  font-size: 0.85rem;
+  transition: all 0.2s;
+}
+
+.login_trigger_btn:hover {
+  background-color: #009929;
+}
+
+/* ===== CAPTCHA ===== */
+.login_captcha_container {
+  margin: 12px 0;
+  display: flex;
+  align-items: center;
+  background-color: #f8fafc;
+  padding: 6px;
+  border-radius: 3px;
+  font-size: 0.75rem;
+}
+
+.login_captcha_checkbox {
+  margin-right: 8px;
+}
+
+.login_captcha_label {
+  margin-right: 8px;
+}
+
+.login_captcha_image {
+  height: 24px;
+}
+
+.login_error_message {
+  color: #e80729;
+  background-color: #fee2e2;
+  padding: 8px 12px;
+  border-radius: 4px;
+  margin-bottom: 16px;
+  font-size: 14px;
+}
+
+.login_success_message {
+  color: #006414;
+  background-color: #dcfce7;
+  padding: 8px 12px;
+  border-radius: 4px;
+  margin-bottom: 16px;
+  font-size: 14px;
+}
+
+/* ===== LOGGED IN STATE ===== */
+.logged_in_content {
+  text-align: center;
+  padding: 20px 0;
+}
+
+.logged_in_message {
+  color: #006414;
+  margin-bottom: 12px;
+  font-weight: 500;
+}
+
+.g-recaptcha-container {
+  margin: 16px 0;
+  display: flex;
+  justify-content: center;
+}
+
+.g-recaptcha {
+  transform: scale(0.85);
+  transform-origin: 0 0;
+}

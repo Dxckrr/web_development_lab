@@ -2,12 +2,14 @@ import Products from "../../products/Products.js";
 import Navbar from "../../navbar/Navbar.js";
 import Cart from "../../cart/Cart.js";
 import Filter from "../../filter/Filter.js";
+import Login from "../../auth/login/Login.js";
 export default class IndexView {
     main;
     navbar;
     products;
     cart;
     filter;
+    login;
     constructor() {
         const main = document.querySelector('main-container');
         if (!main) {
@@ -18,15 +20,15 @@ export default class IndexView {
         this.filter = new Filter('filter', (min, max) => this.products.filterProducts(min, max));
         this.cart = new Cart('cart');
         this.navbar = new Navbar('navbar', async () => await this.cart.renderCartDropDownHTML());
-        // this.searchbar = new Searchbar('searchbar', async (search: string) => await this.products.searchMovies(search))
+        this.login = new Login('login');
     }
     init = () => {
         console.log('IndexView initialized');
-        this.createNavbar();
+        this.createAuth();
         this.createProducts();
         this.createCart();
         this.createFilter();
-        // this.createSearchbar();
+        this.createNavbar();
     };
     createNavbar = () => {
         this.navbar.init();
@@ -34,6 +36,10 @@ export default class IndexView {
         const div = document.querySelector("header");
         div.appendChild(navbarHTML);
         this.assembleSearchbar();
+        const loginModal = this.login.getLoginHTML();
+        this.navbar.setloginModal(loginModal);
+        // const registerModal = this.register.getRegisterHTML()
+        // this.navbar.setregisterModal(registerModal)
     };
     assembleSearchbar = () => {
         setTimeout(() => {
@@ -76,6 +82,9 @@ export default class IndexView {
         mainDiv.appendChild(cartHTML);
         this.main.innerHTML = "";
         this.main.appendChild(this.cart.getCartHTML());
+    };
+    createAuth = () => {
+        this.login.init();
     };
     createFilter = () => {
         this.filter.init();
