@@ -6,6 +6,7 @@ export default class CartDropdownTemplate {
 
     readonly renderCartDropdownContent = async (cart: Cart): Promise<string> => {
         let htmlProducts = ``
+
         if (cart.products.length > 0) {
             const products = await Promise.all(cart.products.map(async ({ product, quantity }: { product: Product; quantity: number }) => {
                 return `
@@ -48,7 +49,9 @@ export default class CartDropdownTemplate {
                         <span>TOTAL <span>(IVA incluido)</span></span>
                         <span>${this.getTotal(cart.products)}</span>
                     </div>
-                    <div class="small mt-1 color-green">Te faltan 6,60 € para disfrutar del envío gratuito.</div>
+                    ${this.getEnvioGratuito(this.getTotal(cart.products)) > 0 ?
+                    `<div class="small mt-1 color-green">Te faltan ${this.getEnvioGratuito(this.getTotal(cart.products))} para disfrutar del envío gratuito.</div>
+                    <div class="small mt-1 color-green">Envío gratuito a partir de 45 €</div>` : `Tu envio es gratis!`}
                 </div>
             `
         } else {
@@ -91,5 +94,14 @@ export default class CartDropdownTemplate {
 
         return this.formatToMoney(total);
     };
+    private readonly parseMoney = (value: string): number => {
+        return parseFloat(value.replace(/[^\d,.-]/g, "").replace(",", "."));
+    }
+    private readonly getEnvioGratuito = (value: string): number => {
+        const envioGratuito = 45;
+        const parsedValue = this.parseMoney(value);
+        const falta = envioGratuito - parsedValue;
+        return Math.max(0, Math.round(falta * 100) / 100);
+    }
 
 }

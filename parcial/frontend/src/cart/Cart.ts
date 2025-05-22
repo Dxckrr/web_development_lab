@@ -23,4 +23,7 @@ export default class Cart {
     readonly renderCartDropDownHTML = async (): Promise<string> => {
         return this.view.renderDropdown();
     }
+    readonly assignDeleteItemEvent = (): void => {
+        return this.view.assignDeleteItemEvent();
+    }
 }

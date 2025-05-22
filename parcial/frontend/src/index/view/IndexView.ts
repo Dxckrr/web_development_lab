@@ -90,7 +90,8 @@ export default class IndexView {
     mainDiv.removeChild(productsHTML);
     mainDiv.removeChild(filterHTML);
     mainDiv.appendChild(cartHTML);
-    this.main.appendChild(this.cart.getCartHTML())
+    this.cart.assignDeleteItemEvent();
+
   }
   readonly createAuth = () => {
     this.login.init();
