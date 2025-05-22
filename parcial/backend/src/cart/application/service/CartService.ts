@@ -1,4 +1,3 @@
-import Product from "../../../product/domain/product/Product";
 import Cart from "../../domain/cart/Cart";
 import NullCart from "../../domain/cart/NullCart";
 import CartRepositoryPort from "../../domain/port/driven/CartRepositoryPort";
@@ -12,9 +11,11 @@ export default class CartService implements CartServicePort {
         }
         return await this.cartRepository.findById(id);
     };
-    addItemToCart: (id: string, item: Product) => Promise<Cart> = async (_id: string, _item: Product) => {
-        // Implementation here
-        return new NullCart();
+    async addItemToCart(id: string, product_id: string, quantity: number): Promise<Cart> {
+        if (id === null || product_id === null || id === undefined || product_id === undefined) {
+            return new NullCart();
+        }
+        return await this.cartRepository.addItemToCart(id, product_id, quantity);
     };
     createCart: (cart: string) => Promise<Cart> = async (_cart: string) => {
         // Implementation here
@@ -24,9 +25,9 @@ export default class CartService implements CartServicePort {
         // Implementation here
         return 0;
     };
-    deleteItemFromCart: (id: string, item: Product) => Promise<boolean> = async (_id: string, _item: Product) => {
+    async deleteItemFromCart(_id: string, _product_id: string): Promise<Cart> {
         // Implementation here
-        return true;
+        return new NullCart();
     };
     deleteCart: (id: string) => Promise<boolean> = async (_id: string) => {
         // Implementation here

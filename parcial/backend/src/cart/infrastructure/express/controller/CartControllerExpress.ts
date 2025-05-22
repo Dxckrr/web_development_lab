@@ -16,9 +16,8 @@ export default class CartControllerExpress implements CartControllerExpressInter
 
     addItemToCart = async (req: Request, res: Response): Promise<void> => {
         try {
-            const { id } = req.params
-            const { item } = req.body
-            const cart = await this.cartUseCase.addItemToCart(String(id), item);
+            const { id, product_id, quantity } = req.body
+            const cart = await this.cartUseCase.addItemToCart(String(id), String(product_id), quantity);
             res.status(200).json(cart);
         } catch (error) {
             res.status(500).json({ message: "Error adding item to cart", error });
@@ -43,14 +42,16 @@ export default class CartControllerExpress implements CartControllerExpressInter
     //     }
     // };
 
-    // deleteItemFromCart = async (req: Request, res: Response): Promise<void> => {
-    //     try {
-    //         const cart = await this.cartUseCase.deleteItemFromCart(req.params.id, req.body.itemId);
-    //         res.status(200).json(cart);
-    //     } catch (error) {
-    //         res.status(500).json({ error: error.message });
-    //     }
-    // };
+    deleteItemFromCart = async (req: Request, res: Response): Promise<void> => {
+        try {
+            const { id } = req.params
+            const { product_id } = req.body
+            const cart = await this.cartUseCase.deleteItemFromCart((String(id)), String(product_id));
+            res.status(200).json(cart);
+        } catch (error) {
+            res.status(500).json({ message: "Error deleting item to cart", error });
+        }
+    };
 
     // increaseCartItemQuantity = async (req: Request, res: Response): Promise<void> => {
     //     try {
