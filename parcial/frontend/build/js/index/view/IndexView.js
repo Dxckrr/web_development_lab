@@ -80,7 +80,6 @@ export default class IndexView {
         mainDiv.removeChild(productsHTML);
         mainDiv.removeChild(filterHTML);
         mainDiv.appendChild(cartHTML);
-        this.main.innerHTML = "";
         this.main.appendChild(this.cart.getCartHTML());
     };
     createAuth = () => {

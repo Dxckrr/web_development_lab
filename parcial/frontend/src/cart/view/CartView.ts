@@ -21,6 +21,7 @@ export default class CartView extends Observer<CartModel> {
         this.render()
     }
     readonly getCartHTML = (): HTMLElement => {
+        this.cartHTML.classList.add("w-100");
         return this.cartHTML;
     }
 

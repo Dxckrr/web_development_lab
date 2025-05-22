@@ -1,7 +1,7 @@
 import Product from "../../products/types/product/Product.js";
 import Cart from "../types/cart/Cart.js";
 
-export default class NavbarTemplate {
+export default class CartTemplate {
     constructor(private readonly cart: Cart) {}
 
     readonly renderCart = async (): Promise<string> => {
@@ -34,7 +34,7 @@ export default class NavbarTemplate {
                             </div>
                         </div>
                         <div class="col-2 text-end">
-                            <span class="fw-bold">${product.price.toFixed(2)} €</span>
+                            <span class="fw-bold">${product.price} €</span>
                         </div>
                         <div class="col-1 text-center">
                             <button class="btn btn-link text-secondary">

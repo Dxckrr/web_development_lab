@@ -29,11 +29,10 @@ export default class LoginModel extends Subject<LoginView> {
     }
 
     try {
-      // Envío captchaToken en el cuerpo JSON
-      const response = await fetch( 'https://localhost:1803/auth/v1.0/login', {
+      const response = await fetch('http://localhost:1802/user/login', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ email, password, captchaToken })
+        body: JSON.stringify({ email, password })
       });
 
       const data = await response.json();
@@ -44,13 +43,10 @@ export default class LoginModel extends Subject<LoginView> {
         return;
       }
 
-      if (data.token) {
-        window.localStorage.setItem('authToken', data.token);
-        window.localStorage.setItem('authEmail', email); 
-        this.setMessage('success', "✅ Inicio de sesión exitoso.");
-      } else {
-        this.setMessage('error', "❌ No se recibió token del servidor.");
-      }
+      window.localStorage.setItem('authToken', data.id);
+      window.localStorage.setItem('authEmail', email);
+      this.setMessage('success', "✅ Inicio de sesión exitoso.");
+
 
     } catch (error) {
       this.setMessage('error', "❌ Error de conexión con el servidor.");

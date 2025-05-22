@@ -42,11 +42,11 @@ export default class CartDropdownTemplate {
                 <div id="total-cart-dropdown">
                     <div class="d-flex justify-content-between small subtotal">
                         <span class="text-muted">Subtotal</span>
-                        <span class="text-muted">${this.formatToMoney(cart.id)}</span>
+                        <span class="text-muted">${this.getTotal(cart.products)}</span>
                     </div>
                     <div class="d-flex justify-content-between fw-bold total">
                         <span>TOTAL <span>(IVA incluido)</span></span>
-                        <span>${this.formatToMoney(cart.id)}</span>
+                        <span>${this.getTotal(cart.products)}</span>
                     </div>
                     <div class="small mt-1 color-green">Te faltan 6,60 € para disfrutar del envío gratuito.</div>
                 </div>
@@ -83,4 +83,13 @@ export default class CartDropdownTemplate {
         })
         return formatter.format(value)
     }
+    private readonly getTotal = (products: any[]): string => {
+        const total = products.reduce((acc, { product, quantity }) => {
+            const price = parseFloat(product.price); // convertir de string a número
+            return acc + (price * quantity);
+        }, 0);
+
+        return this.formatToMoney(total);
+    };
+
 }
