@@ -7,9 +7,9 @@ export default class Navbar {
     private readonly view: NavbarView;
     private readonly controller: NavbarController;
 
-    constructor(element: string) {
+    constructor(element: string, readonly renderCartDropdown: () => Promise<string>) {
         this.model = new NavbarModel();
-        this.view = new NavbarView(element);
+        this.view = new NavbarView(element, renderCartDropdown);
         this.controller = new NavbarController(this.model, this.view);
     }
 

@@ -14,10 +14,10 @@ export default class IndexView {
             this.main = document.createElement('main-container');
         }
         this.main = main;
-        this.navbar = new Navbar('navbar');
         this.products = new Products('products');
         this.filter = new Filter('filter', (min, max) => this.products.filterProducts(min, max));
         this.cart = new Cart('cart');
+        this.navbar = new Navbar('navbar', async () => await this.cart.renderCartDropDownHTML());
         // this.searchbar = new Searchbar('searchbar', async (search: string) => await this.products.searchMovies(search))
     }
     init = () => {

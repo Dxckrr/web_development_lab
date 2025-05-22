@@ -1,6 +1,8 @@
 import Observer from "../../shared/types/Observer.js";
 import CartModel from "../model/CartModel.js";
 import CartTemplate from "../template/CartTemplate.js";
+import CartDropdownTemplate from "../template/CartDropdownTemplate.js";
+
 
 export default class CartView extends Observer<CartModel> {
     private readonly cartHTML: HTMLElement;
@@ -27,6 +29,14 @@ export default class CartView extends Observer<CartModel> {
         const cartData = cartModel.getCart();
         const cartTemplate = new CartTemplate(cartData);
         this.cartHTML.innerHTML = await cartTemplate.renderCart();
+    }
+    readonly renderDropdown = async (): Promise<string> => {
+        const template = new CartDropdownTemplate();
+        const cartModel = (this.subject as CartModel);
+
+        const dropdown = await template.renderCartDropdownContent(cartModel.getCart())
+
+        return dropdown
     }
 
 }

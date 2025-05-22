@@ -20,4 +20,7 @@ export default class Cart {
     readonly getCartHTML = (): HTMLElement => {
         return this.view.getCartHTML();
     }
+    readonly renderCartDropDownHTML = async (): Promise<string> => {
+        return this.view.renderDropdown();
+    }
 }
