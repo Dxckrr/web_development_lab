@@ -4,10 +4,10 @@ export default class ProductsTemplate {
   constructor(private readonly products: Product[]) {}
 
   readonly renderProductsCards = async (): Promise<string> => {
-    let html = "<div class='row row-cols-2 row-cols-sm-3 row-cols-md-4 mb-3'>"
+    let html = "<div class='product-container'> <div class='row row-cols-2 row-cols-sm-3 row-cols-md-4 mb-3'>"
     const productsTemplate = Promise.all(this.products.map(async (product: Product) => {
       return `
-        <article class="col justify-content-center">
+        <article class="col justify-content-center product-card-container">
           <div class="product-card card text-center border-0 card-inner">
             <div class="like-button hover-content">
               <i class="bi-heart-fill"></i>
@@ -15,7 +15,7 @@ export default class ProductsTemplate {
             <!-- <div class="discount">
               <p>- 50%<br>2°und.</p>
             </div> -->
-            <a href="" class="text-decoration-none" id="view-product-${product.id}" data-bs-toggle="modal" data-bs-target="#productModal">
+            <a href="" class="text-decoration-none" id="view-product-${product.id}">
               <img class="w-100" src="${await this.getImage(product.id + ".jpg")}">
               <h5 class="title">${product.name}</h5>
             </a>
@@ -33,7 +33,7 @@ export default class ProductsTemplate {
         `
       })
     )
-    html += (await productsTemplate).join('') + "</div>"
+    html += (await productsTemplate).join('') + "</div>" + "</div>"
     return html;
   }
 

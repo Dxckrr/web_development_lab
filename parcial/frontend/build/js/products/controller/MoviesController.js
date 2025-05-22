@@ -1,4 +1,4 @@
-export default class MoviesController {
+export default class ProductsController {
     model;
     view;
     constructor(model, view) {
@@ -6,13 +6,8 @@ export default class MoviesController {
         this.view = view;
     }
     init = async () => {
-        console.log('MoviesController initialized');
+        console.log('ProductController initialized');
         this.view.init();
         await this.model.init();
-    };
-    searchMovies = async (search) => {
-        if (search.length > 3 || search.length === 0) {
-            return this.model.searchMovies(search);
-        }
     };
 }

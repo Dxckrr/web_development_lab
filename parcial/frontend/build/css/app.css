@@ -1,5 +1,8 @@
 @import url('products.css');
 @import url('index.css');
+@import url('modal.css');
+@import url('cart.css');
+@import url('filter.css');
 
 :root {
   --dark-green: #006414;
@@ -10,4 +13,9 @@
 
   --orange1: #eca229;
   --orange2: #f3b44b;
+}
+.main-container {
+  display: flex;
+  flex: 1;
+  flex-direction: row-reverse;
 }

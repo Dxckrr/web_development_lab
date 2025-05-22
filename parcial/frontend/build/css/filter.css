@@ -1,0 +1,35 @@
+filter {
+  padding: 20px;
+  margin-right: 5px;
+}
+.fixed-filter {
+  top: 20px; /* Ajusta según la altura de tu navbar */
+  height: fit-content;
+  align-self: flex-start;
+  width: 250px; /* Ancho fijo para el filtro */
+  flex-shrink: 0; /* Evita que se reduzca */
+  color: var(--light-green);
+}
+filter #filterButton {
+  color: white;
+  background-color: var(--light-green);
+}
+filter #filterButton:hover {
+  background-color: var(--dark-green);
+}
+filter input[type="range"]::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 20px;
+  height: 20px;
+  background: var(--light-green); /* Cambia este color */
+  border-radius: 50%;
+  cursor: pointer;
+  border: 2px solid white;
+  box-shadow: 0 0 2px rgba(0, 0, 0, 0.5);
+}
+@media (max-width: 991.98px) {
+  .fixed-filter {
+    display: none;
+  }
+}

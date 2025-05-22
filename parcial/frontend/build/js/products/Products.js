@@ -16,7 +16,7 @@ export default class Products {
     getProductsHTML = () => {
         return this.ProductsView.getMoviesHTML();
     };
-    searchMovies = async (search) => {
-        return this.productsController.searchMovies(search);
+    filterProducts = (minPrice, maxPrice) => {
+        return this.ProductsModel.filterProducts(minPrice, maxPrice);
     };
 }

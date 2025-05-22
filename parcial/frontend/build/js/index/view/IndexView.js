@@ -1,25 +1,31 @@
 import Products from "../../products/Products.js";
 import Navbar from "../../navbar/Navbar.js";
-// import Searchbar from "../../searchbar/Searchbar.js";
+import Cart from "../../cart/Cart.js";
+import Filter from "../../filter/Filter.js";
 export default class IndexView {
     main;
     navbar;
     products;
-    // private readonly searchbar: Searchbar;
+    cart;
+    filter;
     constructor() {
-        const main = document.querySelector('main');
+        const main = document.querySelector('main-container');
         if (!main) {
-            this.main = document.createElement('main');
+            this.main = document.createElement('main-container');
         }
         this.main = main;
         this.navbar = new Navbar('navbar');
         this.products = new Products('products');
+        this.filter = new Filter('filter', (min, max) => this.products.filterProducts(min, max));
+        this.cart = new Cart('cart');
         // this.searchbar = new Searchbar('searchbar', async (search: string) => await this.products.searchMovies(search))
     }
     init = () => {
         console.log('IndexView initialized');
         this.createNavbar();
         this.createProducts();
+        this.createCart();
+        this.createFilter();
         // this.createSearchbar();
     };
     createNavbar = () => {
@@ -27,6 +33,11 @@ export default class IndexView {
         const navbarHTML = this.navbar.getNavbarHTML();
         const div = document.querySelector("header");
         div.appendChild(navbarHTML);
+        //
+        // const cartButton = document.getElementById('cart') as HTMLElement;
+        // cartButton.addEventListener('click', () => {
+        //   this.renderCart();
+        // });
     };
     // readonly createSearchbar = () => {
     //   this.searchbar.init();
@@ -40,8 +51,26 @@ export default class IndexView {
         const mainDiv = document.querySelector("main");
         mainDiv.appendChild(productsHTML);
     };
+    createCart = () => {
+        this.cart.init();
+    };
     getIndexHTML = () => {
         return this.main;
     };
-    render = () => { };
+    renderCart = () => {
+        const cartHTML = this.cart.getCartHTML();
+        const productsHTML = this.products.getProductsHTML();
+        const mainDiv = document.querySelector(".main");
+        mainDiv.removeChild(productsHTML);
+        mainDiv.appendChild(cartHTML);
+    };
+    createFilter = () => {
+        this.filter.init();
+        const filterHTML = this.filter.getFilterHTML();
+        const div = document.querySelector('main');
+        console.log(div);
+        div.appendChild(filterHTML);
+    };
+    render = () => {
+    };
 }

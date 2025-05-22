@@ -23,8 +23,8 @@ export default class Products {
   readonly getProductsHTML = (): HTMLElement => {
     return this.ProductsView.getMoviesHTML();
   }
-
-  readonly searchMovies = async (search: string): Promise<void> => {
-    return this.productsController.searchMovies(search);
+  readonly filterProducts = (minPrice: number, maxPrice: number): Promise<void> => {
+    return this.ProductsModel.filterProducts(minPrice, maxPrice);
   }
+
 }

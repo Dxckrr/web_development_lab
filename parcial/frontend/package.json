@@ -1,5 +1,5 @@
 {
-  "name": "mvc-frontend-parcial",
+  "name": "movies-mvc-frontend",
   "version": "1.0.0",
   "main": "index.js",
   "directories": {
@@ -11,7 +11,7 @@
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [],
-  "author": "Juan David Patiño Parra",
+  "author": "",
   "license": "ISC",
   "description": ""
 }

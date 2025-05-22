@@ -18,9 +18,9 @@ export default class NavbarView {
         return this.navbarHTML;
     }
 
-    readonly render = (): void => {
+    readonly render = async () => {
         const navTemplate = new NavbarTemplate();
-        this.navbarHTML.innerHTML = navTemplate.renderNavbar();
+        this.navbarHTML.innerHTML = await navTemplate.renderNavbar();
     }
 
 }

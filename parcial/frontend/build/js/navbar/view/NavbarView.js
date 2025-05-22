@@ -13,8 +13,8 @@ export default class NavbarView {
     getNavbarHTML = () => {
         return this.navbarHTML;
     };
-    render = () => {
+    render = async () => {
         const navTemplate = new NavbarTemplate();
-        this.navbarHTML.innerHTML = navTemplate.renderNavbar();
+        this.navbarHTML.innerHTML = await navTemplate.renderNavbar();
     };
 }
