@@ -53,16 +53,26 @@ export default class IndexView {
     };
     createCart = () => {
         this.cart.init();
-    };
-    getIndexHTML = () => {
-        return this.main;
+        setTimeout(() => {
+            const goToCartBtn = document.getElementById('go-to-cart-btn');
+            goToCartBtn.addEventListener('click', () => {
+                console.log("??");
+                this.renderCart();
+                const cartDropdown = document.getElementById("dropdown-cart-menu");
+                cartDropdown.classList.add("hidden");
+            });
+        }, 1);
     };
     renderCart = () => {
         const cartHTML = this.cart.getCartHTML();
         const productsHTML = this.products.getProductsHTML();
-        const mainDiv = document.querySelector(".main");
+        const filterHTML = this.filter.getFilterHTML();
+        const mainDiv = document.querySelector("main");
         mainDiv.removeChild(productsHTML);
+        mainDiv.removeChild(filterHTML);
         mainDiv.appendChild(cartHTML);
+        this.main.innerHTML = "";
+        this.main.appendChild(this.cart.getCartHTML());
     };
     createFilter = () => {
         this.filter.init();
@@ -70,6 +80,9 @@ export default class IndexView {
         const div = document.querySelector('main');
         console.log(div);
         div.appendChild(filterHTML);
+    };
+    getIndexHTML = () => {
+        return this.main;
     };
     render = () => {
     };

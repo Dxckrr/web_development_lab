@@ -59,20 +59,30 @@ export default class IndexView {
     const mainDiv = document.querySelector("main") as HTMLElement;
     mainDiv.appendChild(productsHTML);
   }
-  readonly createCart = () => {
-    this.cart.init()
-  }
 
-  readonly getIndexHTML = (): HTMLElement => {
-    return this.main;
+  readonly createCart = () => {
+    this.cart.init();
+    setTimeout(() => {
+      const goToCartBtn = document.getElementById('go-to-cart-btn') as HTMLElement;
+      goToCartBtn.addEventListener('click', () => {
+        console.log("??")
+        this.renderCart();
+        const cartDropdown = document.getElementById("dropdown-cart-menu") as HTMLElement;
+        cartDropdown.classList.add("hidden");
+      });
+    }, 1)
   }
 
   readonly renderCart = () => {
     const cartHTML = this.cart.getCartHTML();
     const productsHTML = this.products.getProductsHTML();
-    const mainDiv = document.querySelector(".main") as HTMLElement;
+    const filterHTML = this.filter.getFilterHTML();
+    const mainDiv = document.querySelector("main") as HTMLElement;
     mainDiv.removeChild(productsHTML);
+    mainDiv.removeChild(filterHTML);
     mainDiv.appendChild(cartHTML);
+    this.main.innerHTML = "";
+    this.main.appendChild(this.cart.getCartHTML())
   }
   readonly createFilter = () => {
     this.filter.init()
@@ -80,6 +90,9 @@ export default class IndexView {
     const div = document.querySelector('main') as HTMLElement
     console.log(div)
     div.appendChild(filterHTML)
+  }
+  readonly getIndexHTML = (): HTMLElement => {
+    return this.main;
   }
   readonly render = () => {
 
